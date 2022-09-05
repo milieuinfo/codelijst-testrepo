@@ -10,7 +10,7 @@
   <packaging>jar</packaging>
   <groupId>be.vlaanderen.omgeving.data.id.graph</groupId>
   <artifactId>codelijst-testrepo</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>codelijst-testrepo</name>
   <description />
 
