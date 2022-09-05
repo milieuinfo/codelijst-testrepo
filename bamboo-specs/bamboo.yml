@@ -58,7 +58,7 @@ Release:
     - maven:
         executable: Maven 3.5
         jdk: JDK11
-        goal: release:clean release:prepare -e --batch-mode -DreleaseVersion=${bamboo.inject.release_version} -DdevelopmentVersion=${bamboo.inject.snapshot_version} -Dtag=${bamboo.SVN
+        goal: release:clean release:prepare -e --batch-mode -DreleaseVersion=${bamboo.inject.release_version} -DdevelopmentVersion=${bamboo.inject.snapshot_version} -Dtag=${bamboo.SVN}
     - maven:
         executable: Maven 3.5
         jdk: JDK11
