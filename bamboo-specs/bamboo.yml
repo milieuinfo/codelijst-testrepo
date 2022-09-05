@@ -24,9 +24,9 @@ Build:
   key: BD
   tasks:
     - maven:
-      executable: Maven 3.5
-      jdk: JDK11
-      goal: clean deploy
+        executable: Maven 3.5
+        jdk: JDK11
+        goal: clean deploy
   requirements:
     - REMOTE_ONLY
 
