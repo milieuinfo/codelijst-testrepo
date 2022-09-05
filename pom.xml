@@ -9,15 +9,15 @@
 
   <packaging>jar</packaging>
   <groupId>be.vlaanderen.omgeving.data.id.graph</groupId>
-  <artifactId>codelijst-chemische_stof</artifactId>
+  <artifactId>codelijst-testrepo</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>codelijst-chemische_stof</name>
+  <name>codelijst-testrepo</name>
   <description />
 
   <scm>
-    <connection>scm:svn:https://svn.milieuinfo.be/productie/svn/architectuur/ontologies/codelijst-chemische_stof/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.milieuinfo.be/productie/svn/architectuur/ontologies/codelijst-chemische_stof/trunk/</developerConnection>
-    <url>https://svn.milieuinfo.be/productie/svn/architectuur/ontologies/codelijst-chemische_stof/trunk/</url>
+    <connection>scm:svn:https://github.com/milieuinfo/codelijst-testrepo.git</connection>
+    <developerConnection>scm:svn:https://github.com/milieuinfo/codelijst-testrepo.git</developerConnection>
+    <url>https://github.com/milieuinfo/codelijst-testrepo.git</url>
   </scm>
   <build>
     <plugins>
