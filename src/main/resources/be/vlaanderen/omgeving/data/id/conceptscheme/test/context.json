@@ -1,0 +1,124 @@
+{
+  "altLabel": {
+    "@id": "skos:altLabel",
+    "@language": "nl"
+  },
+  "broader": {
+    "@id": "skos:broader",
+    "@type" : "@id"
+  },
+  "broaderTransitive": {
+    "@id": "skos:broaderTransitive",
+    "@type" : "@id"
+  },
+  "broadMatch": {
+    "@id": "skos:broadMatch",
+    "@type" : "@id"
+  },
+  "changeNote": {
+    "@id": "skos:changeNote",
+    "@language": "nl"
+  },
+  "closeMatch": {
+    "@id": "skos:closeMatch",
+    "@type" : "@id"
+  },
+  "definition": {
+    "@id": "skos:definition",
+    "@language": "nl"
+  },
+  "editorialNote": {
+    "@id": "skos:editorialNote",
+    "@language": "nl"
+  },
+  "exactMatch": {
+    "@id": "skos:exactMatch",
+    "@type" : "@id"
+  },
+  "example": {
+    "@id": "skos:example",
+    "@language": "nl"
+  },
+  "hasTopConcept": {
+    "@id": "skos:hasTopConcept",
+    "@type" : "@id"
+  },
+  "hiddenLabel": {
+    "@id": "skos:hiddenLabel",
+    "@language": "nl"
+  },
+  "historyNote": {
+    "@id": "skos:historyNote",
+    "@language": "nl"
+  },
+  "inScheme": {
+    "@id": "skos:inScheme",
+    "@type" : "@id"
+  },
+  "mappingRelation": {
+    "@id": "skos:mappingRelation",
+    "@type" : "@id"
+  },
+  "member": {
+    "@id": "skos:member",
+    "@type" : "@id"
+  },
+  "memberList": {
+    "@id": "skos:memberList",
+    "@type" : "@id"
+  },
+  "narrower": {
+    "@id": "skos:narrower",
+    "@type" : "@id"
+  },
+  "narrowerTransitive": {
+    "@id": "skos:narrowerTransitive",
+    "@type" : "@id"
+  },
+  "narrowMatch": {
+    "@id": "skos:narrowMatch",
+    "@type" : "@id"
+  },
+  "notation": {
+    "@id": "skos:notation",
+    "@type" : "http://www.w3.org/2001/XMLSchema#string"
+  },
+  "note": {
+    "@id": "skos:note",
+    "@language": "nl"
+  },
+  "prefLabel": {
+    "@id": "skos:prefLabel",
+    "@language": "nl"
+  },
+  "related": {
+    "@id": "skos:related",
+    "@type" : "@id"
+  },
+  "relatedMatch": {
+    "@id": "skos:relatedMatch",
+    "@type" : "@id"
+  },
+  "scopeNote": {
+    "@id": "skos:scopeNote",
+    "@language": "nl"
+  },
+  "semanticRelation": {
+    "@id": "skos:semanticRelation",
+    "@type" : "@id"
+  },
+  "topConceptOf": {
+    "@id": "skos:topConceptOf",
+    "@type" : "@id"
+  },
+  "xsd": "http://www.w3.org/2001/XMLSchema#",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "cs": "https://data.omgeving.vlaanderen.be/id/conceptscheme/",
+  "omg_conceptscheme" : "https://data.omgeving.vlaanderen.be/id/conceptscheme/",
+  "ct": "https://data.omgeving.vlaanderen.be/id/concept/test/",
+  "colt": "https://data.omgeving.vlaanderen.be/id/collection/test/",
+  "dct": "http://purl.org/dc/terms/",
+  "dc": "http://purl.org/dc/elements/1.1/",
+  "xkos": "http://rdf-vocabulary.ddialliance.org/xkos#",
+  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+}

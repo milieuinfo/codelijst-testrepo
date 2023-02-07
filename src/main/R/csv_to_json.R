@@ -2,46 +2,102 @@
 library(tidyr)
 library(dplyr)
 library(jsonlite)
+library(stringr)
 
-df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/chemische_stof.csv", sep=",", na.strings=c("","NA"))
-df <- df %>%
-  separate_rows(casNumbers, sep = "\\|")%>%
-  separate_rows(notations, sep = "\\|")%>%
-  separate_rows(altLabels, sep = "\\|")%>%
-  separate_rows(exactMatches, sep = "\\|")%>%
-  separate_rows(isSubjectOfs, sep = "\\|")%>%
-  separate_rows(collections, sep = "\\|")%>%
-  separate_rows(vmmParameterIds, sep = "\\|")%>%
-  separate_rows(types, sep = "\\|")%>%
-  rename(
-    casNumber = casNumbers,
-    notation = notations,
-    altLabel = altLabels,
-    exactMatch = exactMatches,
-    isSubjectOf = isSubjectOfs,
-    collection = collections,
-    vmmParameterId = vmmParameterIds,
-    "@type" = types
-  )
-for (col in list("https://data.omgeving.vlaanderen.be/id/collection/chemische_stof/water","https://data.omgeving.vlaanderen.be/id/collection/chemische_stof/lucht")) {
-  medium <- subset(df, collection == col ,
-                   select=c(uri, collection)) 
-  medium_members <- as.list(medium["uri"])
-  df2 <- data.frame(col, medium_members)
-  names(df2) <- c("uri","member")
-  df <- bind_rows(df, df2)
+
+to_jsonld <- function(dataframe) {
+  # lees context
+  context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/context.json")
+  # jsonld constructie
+  df_in_list <- list('@graph' = dataframe, '@context' = context)
+  df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
+  return(df_in_json)
 }
-tco <- subset(df, topConceptOf == 'https://data.omgeving.vlaanderen.be/id/conceptscheme/chemische_stof' ,
-              select=c(uri, topConceptOf))
-htc <- as.list(tco["uri"])
-df2 <- data.frame('https://data.omgeving.vlaanderen.be/id/conceptscheme/chemische_stof', htc)
-names(df2) <- c("uri","hasTopConcept")
-df <- bind_rows(df, df2)
-df <- df %>%
-  rename("@id" = uri)
-write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/chemische_stof_separate_rows.csv", row.names = FALSE)
-context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/context.json")
-df_in_list <- list('@graph' = df, '@context' = context)
-df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
-write(df_in_json, "/tmp/chemische_stof.jsonld")
+
+expand_df_on_pipe <- function(dataframe) {
+  # fix voor vctrs_error_incompatible in pubchem column
+  df <- dataframe %>%
+    mutate_all(list(~ str_c("", .)))
+  # verdubbel rijen met pipe separator
+  for(col in colnames(df)) {   # for-loop over columns
+    df <- df %>%
+      separate_rows(col, sep = "\\|")%>%
+      distinct()
+  }
+  return(df)
+}
+
+rename_columns <- function(df) {
+  # rename columns
+  df <- df %>%
+    rename("@id" = uri,
+           "@type" = type)
+  return(df)
+}
+
+members_from_collection  <- function(df) {
+  # members van collection uit "inverse" relatie
+  collections <- na.omit(distinct(df['collection']))
+  for (col in as.list(collections$collection)) {
+    medium <- subset(df, collection == col ,
+                     select=c(uri, collection))
+    medium_members <- as.list(medium["uri"])
+    df2 <- data.frame(col, medium_members)
+    names(df2) <- c("uri","member")
+    df <- bind_rows(df, df2)
+  }
+  return(df)
+}
+
+hasTopConcept_from_topConceptOf  <- function(df) {
+  # hasTopConcept relatie uit inverse relatie
+  schemes <- na.omit(distinct(df['topConceptOf']))
+  for (scheme in as.list(schemes$topConceptOf)) {
+    topconceptof <- subset(df, topConceptOf == scheme ,
+                           select=c(uri, topConceptOf))
+    hastopconcept <- as.list(topconceptof["uri"])
+    df2 <- data.frame(scheme, hastopconcept)
+    names(df2) <- c("uri","hasTopConcept")
+    df <- bind_rows(df, df2)
+  }
+  return(df)
+}
+
+narrower_from_broader  <- function(df) {
+  # narrower uit "inverse" relatie broader
+  broaders <- na.omit(distinct(df['broader']))
+  for (broad in as.list(broaders$broader)) {
+    relation <- subset(df, broader == broad ,
+                       select=c(uri, broader))
+    narrowers <- as.list(relation["uri"])
+    df2 <- data.frame(broad, narrowers)
+    names(df2) <- c("uri","narrower")
+    df <- bind_rows(df, df2)
+  }
+  return(df)
+}
+
+# lees csv
+df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.csv", sep=",", na.strings=c("","NA"))
+
+df <- expand_df_on_pipe(df)%>%
+  members_from_collection()%>%
+  hasTopConcept_from_topConceptOf()%>%
+  narrower_from_broader()%>%
+  rename_columns()
+
+
+# write volledig geexpandeerde csv, ter controle, deze wordt niet aan versiebeheer toegevoegd
+write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test_separate_rows.csv", row.names = FALSE)
+
+# bewaar jsonld
+write(to_jsonld(df), "/tmp/test.jsonld")
+
+# serialiseer jsonld naar mooie turtle en mooie jsonld
+# hiervoor dienen jena cli-tools geinstalleerd, zie README.md
+system("riot --formatted=TURTLE /tmp/test.jsonld > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl")
+system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.jsonld")
+#system("shacl v --shapes ../resources/be/vlaanderen/omgeving/data/id/ontology/chemische-stof-ap-constraints/chemische-stof-ap-constraints.ttl --data ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl")
+
+
 

@@ -1,0 +1,5 @@
+type,uri,collection,prefLabel,altLabel,broader,broaderTransitive,broadMatch,changeNote,closeMatch,definition,editorialNote,exactMatch,example,hiddenLabel,historyNote,inScheme,mappingRelation,notation,note,related,relatedMatch,scopeNote,semanticRelation,topConceptOf
+skos:Concept,ct:test_topconcept,ct:test_collectie,PrefLabel_1,,,,,,,,,,,,,cs:test,,,,,,,,cs:test
+skos:Concept,ct:test_concept,ct:test_collectie,PrefLabel_2,,ct:test_topconcept,,,,,,,,,,,cs:test,,,,,,,,
+skos:Collection,colt:test_collectie,,PrefLabel_3,,,,,,,,,,,,,cs:test,,,,,,,,
+skos:ConceptScheme,cs:test,,PrefLabel_4,,,,,,,,,,,,,,,,,,,,,
