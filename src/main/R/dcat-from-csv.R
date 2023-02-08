@@ -6,8 +6,70 @@ library(jsonlite)
 library(data.table)
 library(stringr)
 
-artifactory <- "https://repo.omgeving.vlaanderen.be/artifactory/release"
+setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 
+
+##### FUNCTIES
+
+# functie om dataframe om te zetten naar jsonld
+to_jsonld <- function(dataframe) {
+  # lees context
+  context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/context.json")
+  # jsonld constructie
+  df_in_list <- list('@graph' = dataframe, '@context' = context)
+  df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
+  return(df_in_json)
+}
+
+expand_df_on_pipe <- function(dataframe) {
+  # verdubbel rijen met pipe separator
+  for(col in colnames(df)) {   # for-loop over columns
+    df <- df %>%
+      separate_rows(col, sep = "\\|")%>% 
+      distinct()
+  }
+  return(df)
+}
+
+update_version <- function(df) {
+  df2 <- data.frame(id=subset(df, type == 'dcat:Dataset')$id, hasVersion=paste(subset(df, type == 'dcat:Dataset')$id,version_next_release, sep = "_"), type='dcat:Dataset')
+  setDT(df)[type == "dcat:Dataset", owl.versionInfo := version_next_release]
+  setDT(df)[type == "dcat:Distribution", owl.versionInfo := version_next_release]
+  setDT(df)[type == "dcat:Dataset", id := paste(id,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Distribution", id := paste(id,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Dataset", dc.identifier := paste(dc.identifier,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Distribution", dc.identifier := paste(dc.identifier,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Dataset", identifier := paste(identifier,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Distribution", identifier := paste(identifier,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,version_next_release, sep = "_")]
+  setDT(df)[type == "dcat:Distribution", downloadURL := gsub("/src", paste('-',version_next_release,'/src', sep = ""), downloadURL)]
+  
+  df <- bind_rows(df, df2)
+  return(df)
+}
+
+add_package_as_distribution <- function(df) {
+  #ds <- df[df$type == 'spdx:Package', ]['id']
+  ds <- subset(df, type == 'spdx:Package')$id
+  setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,ds, sep = "|")]
+  setDT(df)[type == "spdx:Package", type := paste(type,'dcat:Distribution', sep = "|")]
+  
+  return(df)
+}
+
+rename_columns <- function(df) {
+  # rename columns
+  df <- df %>%
+    rename(  "@id" = id,
+             "@type" = type)
+
+  return(df)
+}
+
+#### START SCRIPT
+
+#### PARSE POM.XML SET VARIABLES
+artifactory <- "https://repo.omgeving.vlaanderen.be/artifactory/release"
 # read pom.xml 
 x <- read_xml("../../../pom.xml")
 xml_ns_strip( x )
@@ -15,34 +77,44 @@ groupId <- xml_text( xml_find_first(x, "/project/groupId") )
 artifactId <- xml_text( xml_find_first(x, "/project/artifactId") )
 version <- xml_text( xml_find_first(x, "/project/version") )
 name <- xml_text( xml_find_first(x, "/project/name") )
-
 class_path  <- gsub("\\.","/", groupId) 
 version_next_release <- strsplit(version, '-')[[1]][1]
 packageFileName_ <- paste(name,'-',version_next_release,'.jar', sep = "")
 packageName_ <- paste(groupId, name, sep = ".")
-package_id <- paste("omg_package", packageName_, sep = ":")
+package_id <- paste(paste("omg_package", packageName_, sep = ":"),version_next_release, sep = ".")
 downloadLocation_ <- paste(artifactory, class_path, name, version_next_release, packageFileName_, sep = "/")
 
 
+### MAAK DATAFRAME VAN METADATA CSV
 df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", sep=",", na.strings=c("","NA"))
+
+
+### MAAK PACKAGE METADATA
+df2 <- data.frame("access_right:PUBLIC","file_type:JAR", package_id, 'spdx:Package', package_id, paste(packageName_,version_next_release, sep = "."), downloadLocation_, downloadLocation_, packageFileName_, packageName_, version_next_release,  paste("Package", artifactId, sep = " "))
+names(df2) <- c("accessRights","format","id","type", "identifier", "dc.identifier","downloadLocation", "downloadURL","packageFileName", "packageName",  "versionInfo",  "label")
+df <- bind_rows(df, df2)
+
+
+
+df <- expand_df_on_pipe(df)
+
+df <-   update_version(df)
+
+df <- add_package_as_distribution(df)
+
 df <- df %>%
   mutate_all(list(~ str_c("", .)))
-setDT(df)[type == "dcat:Dataset", owl.versionInfo := version_next_release]
-setDT(df)[type == "dcat:Distribution", owl.versionInfo := version_next_release]
-write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", row.names = FALSE)
+df <-   expand_df_on_pipe()%>% 
+  rename_columns()
 
-for(col in 1:ncol(df)) {   # for-loop over columns
-  df <- df %>%
-    separate_rows(col, sep = "\\|")
-}
-df <- df %>% rename(
-  "@id" = id,
-  "@type" = type
-)
-context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/context.json")
-df_in_list <- list('@graph' = df, '@context' = context)
-df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
+
+### JSONLD RDF UIT DATAFRAME
+df_in_json <- to_jsonld(df)
+
 write(df_in_json, "/tmp/catalog.jsonld")
+
+### CLEAN RDF
+
 system("riot --formatted=TURTLE /tmp/catalog.jsonld > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl")
 system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.jsonld")
 
