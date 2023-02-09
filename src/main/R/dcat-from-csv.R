@@ -8,7 +8,6 @@ library(stringr)
 
 setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 
-
 ##### FUNCTIES
 
 # functie om dataframe om te zetten naar jsonld
@@ -84,17 +83,13 @@ packageName_ <- paste(groupId, name, sep = ".")
 package_id <- paste(paste("omg_package", packageName_, sep = ":"),version_next_release, sep = ".")
 downloadLocation_ <- paste(artifactory, class_path, name, version_next_release, packageFileName_, sep = "/")
 
-
 ### MAAK DATAFRAME VAN METADATA CSV
 df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", sep=",", na.strings=c("","NA"))
-
 
 ### MAAK PACKAGE METADATA
 df2 <- data.frame("access_right:PUBLIC","file_type:JAR", package_id, 'spdx:Package', package_id, paste(packageName_,version_next_release, sep = "."), downloadLocation_, downloadLocation_, packageFileName_, packageName_, version_next_release,  paste("Package", artifactId, sep = " "))
 names(df2) <- c("accessRights","format","id","type", "identifier", "dc.identifier","downloadLocation", "downloadURL","packageFileName", "packageName",  "versionInfo",  "label")
 df <- bind_rows(df, df2)
-
-
 
 df <- expand_df_on_pipe(df)
 
@@ -106,7 +101,6 @@ df <- df %>%
   mutate_all(list(~ str_c("", .)))
 df <-   expand_df_on_pipe()%>% 
   rename_columns()
-
 
 ### JSONLD RDF UIT DATAFRAME
 df_in_json <- to_jsonld(df)
