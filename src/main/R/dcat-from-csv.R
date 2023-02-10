@@ -8,6 +8,7 @@ library(stringr)
 
 setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 
+
 ##### FUNCTIES
 
 # functie om dataframe om te zetten naar jsonld
@@ -18,6 +19,23 @@ to_jsonld <- function(dataframe) {
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
   return(df_in_json)
+}
+
+### functie om de volgende release versie juist te zetten
+prompt_versie <- function(version_next_release) {
+  cat(paste("Is de volgende release versie : ",version_next_release,'?\n'))
+  cat(" (y/n)  : ")
+  yes_or_no <- readLines("stdin",n=1);
+  if ( yes_or_no == 'y') {
+    return(version_next_release)
+  } else if ( yes_or_no == 'n') {
+    cat(" Wat is de volgende release versie?  : ")
+    version_next_release <- readLines("stdin",n=1)
+    prompt_versie(version_next_release)
+  } else {
+    cat("enter y or n\n")
+    prompt_versie(version_next_release)
+  }
 }
 
 expand_df_on_pipe <- function(dataframe) {
@@ -42,6 +60,8 @@ update_version <- function(df) {
   setDT(df)[type == "dcat:Distribution", identifier := paste(identifier,version_next_release, sep = "_")]
   setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,version_next_release, sep = "_")]
   setDT(df)[type == "dcat:Distribution", downloadURL := gsub("/src", paste('-',version_next_release,'/src', sep = ""), downloadURL)]
+  setDT(df)[type == "dcat:Distribution", issued := format(date)]
+  setDT(df)[type == "dcat:Dataset", issued := format(date)]
   
   df <- bind_rows(df, df2)
   return(df)
@@ -83,12 +103,15 @@ packageName_ <- paste(groupId, name, sep = ".")
 package_id <- paste(paste("omg_package", packageName_, sep = ":"),version_next_release, sep = ".")
 downloadLocation_ <- paste(artifactory, class_path, name, version_next_release, packageFileName_, sep = "/")
 
+date<-Sys.Date()
+version_next_release <- prompt_versie(version_next_release)
+
 ### MAAK DATAFRAME VAN METADATA CSV
 df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", sep=",", na.strings=c("","NA"))
 
 ### MAAK PACKAGE METADATA
-df2 <- data.frame("access_right:PUBLIC","file_type:JAR", package_id, 'spdx:Package', package_id, paste(packageName_,version_next_release, sep = "."), downloadLocation_, downloadLocation_, packageFileName_, packageName_, version_next_release,  paste("Package", artifactId, sep = " "))
-names(df2) <- c("accessRights","format","id","type", "identifier", "dc.identifier","downloadLocation", "downloadURL","packageFileName", "packageName",  "versionInfo",  "label")
+df2 <- data.frame(format(date),"ovo:OVO003751","access_right:PUBLIC","file_type:JAR", package_id, 'spdx:Package', package_id, paste(packageName_,version_next_release, sep = "."), downloadLocation_, downloadLocation_, packageFileName_, packageName_, version_next_release,  paste("Package", artifactId, sep = " "))
+names(df2) <- c("issued","rightsHolder","accessRights","format","id","type", "identifier", "dc.identifier","downloadLocation", "downloadURL","packageFileName", "packageName",  "versionInfo",  "label")
 df <- bind_rows(df, df2)
 
 df <- expand_df_on_pipe(df)
@@ -111,4 +134,7 @@ write(df_in_json, "/tmp/catalog.jsonld")
 
 system("riot --formatted=TURTLE /tmp/catalog.jsonld > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl")
 system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.jsonld")
+
+
+
 
