@@ -38,7 +38,7 @@ prompt_versie <- function(version_next_release) {
   }
 }
 
-expand_df_on_pipe <- function(dataframe) {
+expand_df_on_pipe <- function(df) {
   # verdubbel rijen met pipe separator
   for(col in colnames(df)) {   # for-loop over columns
     df <- df %>%
@@ -48,22 +48,53 @@ expand_df_on_pipe <- function(dataframe) {
   return(df)
 }
 
+collapse_df_on_pipe <- function(df) {
+  # group by 
+  df3 <- df %>% select(id) %>% distinct()
+  for(col in colnames(df)) {   # for-loop over columns
+    if ( col != 'id') {
+      df4 <- df %>% select(id, col)   
+      names(df4)[2] <- 'naam'
+      df2 <- df4 %>% group_by(id) %>% 
+        summarize(naam = paste(sort(unique(naam)),collapse="|")) 
+      names(df2)[2] <- col
+      #colnames(df2)[2] = col
+      df3 <- merge(df3, df2, by = "id")
+    }
+  }
+  return(df3)
+}
+
+
+
+
 update_version <- function(df) {
   df2 <- data.frame(id=subset(df, type == 'dcat:Dataset')$id, hasVersion=paste(subset(df, type == 'dcat:Dataset')$id,version_next_release, sep = "_"), type='dcat:Dataset')
   setDT(df)[type == "dcat:Dataset", owl.versionInfo := version_next_release]
   setDT(df)[type == "dcat:Distribution", owl.versionInfo := version_next_release]
-  setDT(df)[type == "dcat:Dataset", id := paste(id,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Distribution", id := paste(id,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Dataset", dc.identifier := paste(dc.identifier,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Distribution", dc.identifier := paste(dc.identifier,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Dataset", identifier := paste(identifier,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Distribution", identifier := paste(identifier,version_next_release, sep = "_")]
-  setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,version_next_release, sep = "_")]
+  setDT(df)[type == "spdx:Package", owl.versionInfo := version_next_release]
+  setDT(df)[type == "dcat:Dataset", id := paste(id,version_next_release, sep = ".")]
+  setDT(df)[type == "dcat:Distribution", id := paste(id,version_next_release, sep = ".")]
+  setDT(df)[type == "dcat:Dataset", dc.identifier := paste(dc.identifier,version_next_release, sep = ".")]
+  setDT(df)[type == "dcat:Distribution", dc.identifier := paste(dc.identifier,version_next_release, sep = ".")]
+  setDT(df)[type == "dcat:Dataset", identifier := paste(identifier,version_next_release, sep = "'")]
+  setDT(df)[type == "dcat:Distribution", identifier := paste(identifier,version_next_release, sep = ".")]
+  setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,version_next_release, sep = ".")]
   setDT(df)[type == "dcat:Distribution", downloadURL := gsub("/src", paste('-',version_next_release,'/src', sep = ""), downloadURL)]
-  setDT(df)[type == "dcat:Distribution", issued := format(date)]
-  setDT(df)[type == "dcat:Dataset", issued := format(date)]
-  
-  df <- bind_rows(df, df2)
+  setDT(df)[type == "dcat:Distribution", issued := issued_]
+  setDT(df)[type == "dcat:Dataset", issued := issued_]
+  setDT(df)[type == "spdx:Package", issued := issued_]
+  setDT(df)[type == "spdx:Package", id := package_id]
+  setDT(df)[type == "spdx:Package", identifier := package_id]
+  setDT(df)[type == "spdx:Package", dc.identifier := paste(packageName_,version_next_release, sep = ".")]
+  setDT(df)[type == "spdx:Package", downloadLocation := downloadLocation_]
+  setDT(df)[type == "spdx:Package", downloadURL := downloadLocation_]
+  setDT(df)[type == "spdx:Package", packageFileName := packageFileName_]
+  setDT(df)[type == "spdx:Package", packageName := packageName_]
+  setDT(df)[type == "spdx:Package", versionInfo := version_next_release]
+  setDT(df)[type == "spdx:Package", label := paste("Package", artifactId, sep = " ")]
+  df <- bind_rows(df, df2)%>%
+                          distinct()
   return(df)
 }
 
@@ -98,32 +129,35 @@ version <- xml_text( xml_find_first(x, "/project/version") )
 name <- xml_text( xml_find_first(x, "/project/name") )
 class_path  <- gsub("\\.","/", groupId) 
 version_next_release <- strsplit(version, '-')[[1]][1]
+version_next_release <- prompt_versie(version_next_release)
 packageFileName_ <- paste(name,'-',version_next_release,'.jar', sep = "")
 packageName_ <- paste(groupId, name, sep = ".")
 package_id <- paste(paste("omg_package", packageName_, sep = ":"),version_next_release, sep = ".")
 downloadLocation_ <- paste(artifactory, class_path, name, version_next_release, packageFileName_, sep = "/")
 
-date<-Sys.Date()
-version_next_release <- prompt_versie(version_next_release)
+issued_ <- format(Sys.Date())
+
 
 ### MAAK DATAFRAME VAN METADATA CSV
-df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", sep=",", na.strings=c("","NA"))
+df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog_source.csv", sep=",", na.strings=c("","NA"))
 
-### MAAK PACKAGE METADATA
-df2 <- data.frame(format(date),"ovo:OVO003751","access_right:PUBLIC","file_type:JAR", package_id, 'spdx:Package', package_id, paste(packageName_,version_next_release, sep = "."), downloadLocation_, downloadLocation_, packageFileName_, packageName_, version_next_release,  paste("Package", artifactId, sep = " "))
-names(df2) <- c("issued","rightsHolder","accessRights","format","id","type", "identifier", "dc.identifier","downloadLocation", "downloadURL","packageFileName", "packageName",  "versionInfo",  "label")
-df <- bind_rows(df, df2)
 
 df <- expand_df_on_pipe(df)
+
 
 df <-   update_version(df)
 
 df <- add_package_as_distribution(df)
 
+write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.csv", row.names = FALSE)
+
 df <- df %>%
   mutate_all(list(~ str_c("", .)))
-df <-   expand_df_on_pipe()%>% 
+
+df <-   expand_df_on_pipe(df)%>% 
   rename_columns()
+
+
 
 ### JSONLD RDF UIT DATAFRAME
 df_in_json <- to_jsonld(df)
