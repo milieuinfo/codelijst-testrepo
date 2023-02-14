@@ -6,7 +6,7 @@ library(jsonlite)
 library(data.table)
 library(stringr)
 
-setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
+#setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 
 
 ##### FUNCTIES

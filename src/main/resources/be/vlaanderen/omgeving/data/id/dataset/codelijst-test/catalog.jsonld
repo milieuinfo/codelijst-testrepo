@@ -1,299 +1,197 @@
 {
     "@graph": [
         {
-            "@id": "omg_dataset:codelijst-test.2.0.1",
-            "foaf:page": {
-                "@id": "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-test.html"
-            },
-            "dcat:distribution": [
-                {
-                    "@id": "omg_distribution:codelijst-test_csv.2.0.1"
-                },
-                {
-                    "@id": "omg_distribution:codelijst-test_ttl.2.0.1"
-                },
-                {
-                    "@id": "omg_distribution:codelijst-test_jsonld.2.0.1"
-                },
-                {
-                    "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.1"
-                }
-            ],
-            "dcterms:rightsHolder": {
-                "@id": "ovo:OVO003751"
-            },
-            "dcterms:title": {
-                "@language": "nl",
-                "@value": "Thesaurus chemische stoffen"
-            },
-            "dcat:theme": [
-                {
-                    "@id": "datatheme_be:ENVI"
-                },
-                {
-                    "@id": "eurovoc:2407"
-                },
-                {
-                    "@id": "datatheme_eu:ENVI"
-                },
-                {
-                    "@id": "gemet:10087"
-                }
-            ],
-            "dcterms:license": {
-                "@id": "http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0"
-            },
-            "dcterms:issued": {
-                "@value": "2023-02-13",
-                "@type": "xsd:date"
-            },
-            "@type": "dcat:Dataset",
-            "dcterms:alternative": {
-                "@language": "nl",
-                "@value": "Codelijst test Dataset"
-            },
-            "dc:language": {
-                "@language": "nl",
-                "@value": "nl"
-            },
-            "dcterms:temporal": {
-                "@id": "omg_id:periodoftime/dataset_omg"
-            },
-            "dcterms:spatial": [
-                {
-                    "@id": "https://www.geonames.org/3337388/flanders"
-                },
-                {
-                    "@id": "country:BEL"
-                }
-            ],
-            "dcterms:identifier": {
-                "@id": "omg_dataset:codelijst-test'2.0.1"
-            },
-            "rdfs:label": {
-                "@language": "nl",
-                "@value": "Dataset Codelijst test"
-            },
-            "dcat:landingPage": {
-                "@id": "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html"
-            },
-            "void:rootResource": {
-                "@id": "omg_conceptscheme:test"
-            },
-            "dcterms:description": {
-                "@language": "nl",
-                "@value": "Deze dataset bevat een lijst van chemische stoffen, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid en zoals die initieel binnen het kader van het OSLO thema omgeving is opgesteld."
-            },
-            "dcterms:accessRights": {
-                "@id": "access_right:PUBLIC"
-            },
-            "dcat:contactPoint": {
-                "@id": "omg_id:vcard/helpdesk"
-            },
-            "dcterms:accrualPeriodicity": {
-                "@id": "frequency:IRREG"
-            },
-            "dc:identifier": "be.vlaanderen.omgeving.data.id.dataset.codelijst-test.2.0.1",
-            "dcterms:language": {
-                "@id": "language:NLD"
-            },
-            "dcterms:publisher": {
-                "@id": "ovo:OVO003323"
-            },
-            "owl:versionInfo": "2.0.1"
-        },
-        {
-            "@id": "omg_distribution:codelijst-test_csv.2.0.1",
-            "dcat:mediaType": {
-                "@id": "https://www.iana.org/assignments/media-types/text/csv"
-            },
+            "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.2",
             "dcterms:format": {
-                "@id": "file_type:CSV"
-            },
-            "dcat:compressFormat": {
-                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
-            },
-            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_csv.2.0.1",
-            "rdfs:label": {
-                "@language": "nl",
-                "@value": "Codelijst test, in text/csv formaat."
-            },
-            "dcterms:description": {
-                "@language": "nl",
-                "@value": "Codelijst test, geserialiseerd in csv tabelformaat."
-            },
-            "owl:versionInfo": "2.0.1",
-            "dcat:accessURL": {
-                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
-            },
-            "@type": "dcat:Distribution",
-            "dcterms:accessRights": {
-                "@id": "access_right:PUBLIC"
-            },
-            "dcterms:identifier": {
-                "@id": "omg_distribution:codelijst-test_ttl.2.0.1"
-            },
-            "dcterms:title": {
-                "@language": "nl",
-                "@value": "Codelijst test in text/csv formaat."
-            },
-            "dcterms:rightsHolder": {
-                "@id": "ovo:OVO003751"
-            },
-            "dcat:downloadURL": {
-                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.csv"
-            },
-            "dcterms:issued": {
-                "@value": "2023-02-13",
-                "@type": "xsd:date"
-            },
-            "foaf:page": {
-                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_csv.html"
-            }
-        },
-        {
-            "@id": "omg_distribution:codelijst-test_ttl.2.0.1",
-            "dcterms:title": {
-                "@language": "nl",
-                "@value": "Codelijst test in Turtle rdf-formaat."
-            },
-            "dcterms:issued": {
-                "@value": "2023-02-13",
-                "@type": "xsd:date"
-            },
-            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_ttl.2.0.1",
-            "foaf:page": {
-                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_ttl.html"
-            },
-            "dcterms:identifier": {
-                "@id": "omg_distribution:codelijst-test_ttl.2.0.1"
-            },
-            "dcat:accessURL": {
-                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
-            },
-            "dcat:mediaType": {
-                "@id": "https://www.iana.org/assignments/media-types/text/turtle"
-            },
-            "dcat:downloadURL": {
-                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl"
-            },
-            "dcterms:description": {
-                "@language": "nl",
-                "@value": "Codelijst test, geserialiseerd in Turtle bestand."
-            },
-            "dcterms:rightsHolder": {
-                "@id": "ovo:OVO003751"
-            },
-            "dcterms:format": {
-                "@id": "file_type:RDF_TURTLE"
-            },
-            "@type": "dcat:Distribution",
-            "rdfs:label": {
-                "@language": "nl",
-                "@value": "Codelijst test, in Turtle rdf-formaat."
-            },
-            "dcat:compressFormat": {
-                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
-            },
-            "owl:versionInfo": "2.0.1",
-            "dcterms:accessRights": {
-                "@id": "access_right:PUBLIC"
-            }
-        },
-        {
-            "@id": "omg_distribution:codelijst-test_jsonld.2.0.1",
-            "dcat:compressFormat": {
-                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
-            },
-            "dcterms:identifier": {
-                "@id": "omg_distribution:codelijst-test_jsonld.2.0.1"
-            },
-            "dcat:downloadURL": {
-                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.jsonld"
-            },
-            "dcterms:title": {
-                "@language": "nl",
-                "@value": "Codelijst test in jsonld rdf-formaat."
-            },
-            "foaf:page": {
-                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_jsonld.html"
-            },
-            "dcterms:description": {
-                "@language": "nl",
-                "@value": "Codelijst test, geserialiseerd in een jsonld bestand."
-            },
-            "dcterms:issued": {
-                "@value": "2023-02-13",
-                "@type": "xsd:date"
-            },
-            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_jsonld.2.0.1",
-            "dcterms:format": {
-                "@id": "file_type:JSON_LD"
-            },
-            "owl:versionInfo": "2.0.1",
-            "dcat:accessURL": {
-                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
-            },
-            "rdfs:label": {
-                "@language": "nl",
-                "@value": "Codelijst test, in jsonld rdf-formaat."
-            },
-            "dcterms:rightsHolder": {
-                "@id": "ovo:OVO003751"
-            },
-            "dcat:mediaType": {
-                "@id": "https://www.iana.org/assignments/media-types/application/ld+json"
-            },
-            "dcterms:accessRights": {
-                "@id": "access_right:PUBLIC"
-            },
-            "@type": "dcat:Distribution"
-        },
-        {
-            "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.1",
-            "owl:versionInfo": "2.0.1",
-            "dcterms:identifier": {
-                "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.1"
-            },
-            "dcterms:rightsHolder": {
-                "@id": "ovo:OVO003751"
+                "@id": "file_type:JAR"
             },
             "@type": [
-                "dcat:Distribution",
-                "spdx:Package"
+                "spdx:Package",
+                "dcat:Distribution"
             ],
             "dcterms:accessRights": {
                 "@id": "access_right:PUBLIC"
-            },
-            "spdx:downloadLocation": {
-                "@id": "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.0.1/codelijst-testrepo-2.0.1.jar"
-            },
-            "spdx:versionInfo": "2.0.1",
-            "dcterms:issued": {
-                "@value": "2023-02-13",
-                "@type": "xsd:date"
-            },
-            "dcterms:title": {
-                "@language": "nl",
-                "@value": "Codelijst test in jar-formaat."
             },
             "rdfs:label": {
                 "@language": "nl",
                 "@value": "Package codelijst-testrepo"
             },
-            "spdx:packageFileName": "codelijst-testrepo-2.0.1.jar",
+            "dcterms:identifier": {
+                "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.2"
+            },
+            "spdx:packageFileName": "codelijst-testrepo-2.0.2.jar",
+            "dcterms:rightsHolder": {
+                "@id": "ovo:OVO003751"
+            },
+            "spdx:versionInfo": "2.0.2",
             "dcat:downloadURL": {
-                "@id": "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.0.1/codelijst-testrepo-2.0.1.jar"
+                "@id": "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.0.2/codelijst-testrepo-2.0.2.jar"
             },
-            "dcterms:format": {
-                "@id": "file_type:JAR"
+            "spdx:downloadLocation": {
+                "@id": "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.0.2/codelijst-testrepo-2.0.2.jar"
             },
-            "dc:identifier": "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.1",
-            "spdx:packageName": "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo",
+            "dcterms:issued": {
+                "@value": "2023-02-14",
+                "@type": "xsd:date"
+            },
             "dcterms:description": {
                 "@language": "nl",
                 "@value": "Codelijst test, Jar maven package."
+            },
+            "dc:identifier": "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.2",
+            "spdx:packageName": "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo",
+            "owl:versionInfo": "2.0.2",
+            "dcterms:title": {
+                "@language": "nl",
+                "@value": "Codelijst test in jar-formaat."
             }
+        },
+        {
+            "@id": "omg_distribution:codelijst-test_csv.2.0.2",
+            "dcterms:accessRights": {
+                "@id": "access_right:PUBLIC"
+            },
+            "dcterms:format": {
+                "@id": "file_type:CSV"
+            },
+            "dcterms:identifier": {
+                "@id": "omg_distribution:codelijst-test_ttl.2.0.2"
+            },
+            "dcat:downloadURL": {
+                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.2/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.csv"
+            },
+            "dcterms:description": {
+                "@language": "nl",
+                "@value": "Codelijst test, geserialiseerd in csv tabelformaat."
+            },
+            "dcat:mediaType": {
+                "@id": "https://www.iana.org/assignments/media-types/text/csv"
+            },
+            "dcat:accessURL": {
+                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
+            },
+            "@type": "dcat:Distribution",
+            "dcterms:title": {
+                "@language": "nl",
+                "@value": "Codelijst test in text/csv formaat."
+            },
+            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_csv.2.0.2",
+            "dcterms:issued": {
+                "@value": "2023-02-14",
+                "@type": "xsd:date"
+            },
+            "dcterms:rightsHolder": {
+                "@id": "ovo:OVO003751"
+            },
+            "rdfs:label": {
+                "@language": "nl",
+                "@value": "Codelijst test, in text/csv formaat."
+            },
+            "foaf:page": {
+                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_csv.html"
+            },
+            "owl:versionInfo": "2.0.2",
+            "dcat:compressFormat": {
+                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
+            }
+        },
+        {
+            "@id": "omg_distribution:codelijst-test_ttl.2.0.2",
+            "dcat:mediaType": {
+                "@id": "https://www.iana.org/assignments/media-types/text/turtle"
+            },
+            "dcterms:identifier": {
+                "@id": "omg_distribution:codelijst-test_ttl.2.0.2"
+            },
+            "dcterms:title": {
+                "@language": "nl",
+                "@value": "Codelijst test in Turtle rdf-formaat."
+            },
+            "dcterms:description": {
+                "@language": "nl",
+                "@value": "Codelijst test, geserialiseerd in Turtle bestand."
+            },
+            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_ttl.2.0.2",
+            "dcterms:accessRights": {
+                "@id": "access_right:PUBLIC"
+            },
+            "dcat:downloadURL": {
+                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.2/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl"
+            },
+            "foaf:page": {
+                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_ttl.html"
+            },
+            "dcat:compressFormat": {
+                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
+            },
+            "dcterms:rightsHolder": {
+                "@id": "ovo:OVO003751"
+            },
+            "dcat:accessURL": {
+                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
+            },
+            "dcterms:format": {
+                "@id": "file_type:RDF_TURTLE"
+            },
+            "@type": "dcat:Distribution",
+            "owl:versionInfo": "2.0.2",
+            "rdfs:label": {
+                "@language": "nl",
+                "@value": "Codelijst test, in Turtle rdf-formaat."
+            },
+            "dcterms:issued": {
+                "@value": "2023-02-14",
+                "@type": "xsd:date"
+            }
+        },
+        {
+            "@id": "omg_distribution:codelijst-test_jsonld.2.0.2",
+            "dcterms:description": {
+                "@language": "nl",
+                "@value": "Codelijst test, geserialiseerd in een jsonld bestand."
+            },
+            "dcat:downloadURL": {
+                "@id": "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.0.2/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.jsonld"
+            },
+            "foaf:page": {
+                "@id": "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-test_jsonld.html"
+            },
+            "rdfs:label": {
+                "@language": "nl",
+                "@value": "Codelijst test, in jsonld rdf-formaat."
+            },
+            "dcterms:accessRights": {
+                "@id": "access_right:PUBLIC"
+            },
+            "dcat:mediaType": {
+                "@id": "https://www.iana.org/assignments/media-types/application/ld+json"
+            },
+            "dcat:accessURL": {
+                "@id": "https://github.com/milieuinfo/codelijst-testrepo.git"
+            },
+            "dc:identifier": "be.vlaanderen.omgeving.data.id.distribution.codelijst-test_jsonld.2.0.2",
+            "owl:versionInfo": "2.0.2",
+            "dcterms:rightsHolder": {
+                "@id": "ovo:OVO003751"
+            },
+            "dcterms:title": {
+                "@language": "nl",
+                "@value": "Codelijst test in jsonld rdf-formaat."
+            },
+            "dcterms:issued": {
+                "@value": "2023-02-14",
+                "@type": "xsd:date"
+            },
+            "dcat:compressFormat": {
+                "@id": "http://www.iana.org/assignments/media-types/application/gzip"
+            },
+            "dcterms:format": {
+                "@id": "file_type:JSON_LD"
+            },
+            "dcterms:identifier": {
+                "@id": "omg_distribution:codelijst-test_jsonld.2.0.2"
+            },
+            "@type": "dcat:Distribution"
         },
         {
             "@id": "omg_catalog:codelijst",
@@ -309,11 +207,113 @@
                     "@id": "file:///tmp/NA"
                 },
                 {
-                    "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.1"
+                    "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.2"
                 }
             ],
             "dcterms:hasVersion": {
-                "@id": "omg_dataset:codelijst-test_2.0.1"
+                "@id": "omg_dataset:codelijst-test_2.0.2"
+            },
+            "@type": "dcat:Dataset"
+        },
+        {
+            "@id": "omg_dataset:codelijst-test.2.0.2",
+            "dcterms:alternative": {
+                "@language": "nl",
+                "@value": "Codelijst test Dataset"
+            },
+            "dcterms:spatial": [
+                {
+                    "@id": "country:BEL"
+                },
+                {
+                    "@id": "https://www.geonames.org/3337388/flanders"
+                }
+            ],
+            "dcterms:temporal": {
+                "@id": "omg_id:periodoftime/dataset_omg"
+            },
+            "dc:identifier": "be.vlaanderen.omgeving.data.id.dataset.codelijst-test.2.0.2",
+            "rdfs:label": {
+                "@language": "nl",
+                "@value": "Dataset Codelijst test"
+            },
+            "dcat:landingPage": {
+                "@id": "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html"
+            },
+            "dcat:distribution": [
+                {
+                    "@id": "omg_distribution:codelijst-test_ttl.2.0.2"
+                },
+                {
+                    "@id": "omg_distribution:codelijst-test_jsonld.2.0.2"
+                },
+                {
+                    "@id": "omg_id:package/be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.0.2"
+                },
+                {
+                    "@id": "omg_distribution:codelijst-test_csv.2.0.2"
+                }
+            ],
+            "dcterms:rightsHolder": {
+                "@id": "ovo:OVO003751"
+            },
+            "dcterms:title": {
+                "@language": "nl",
+                "@value": "Thesaurus chemische stoffen"
+            },
+            "owl:versionInfo": "2.0.2",
+            "dcat:theme": [
+                {
+                    "@id": "eurovoc:2407"
+                },
+                {
+                    "@id": "datatheme_eu:ENVI"
+                },
+                {
+                    "@id": "gemet:10087"
+                },
+                {
+                    "@id": "datatheme_be:ENVI"
+                }
+            ],
+            "dcterms:identifier": {
+                "@id": "omg_dataset:codelijst-test'2.0.2"
+            },
+            "dcat:contactPoint": {
+                "@id": "omg_id:vcard/helpdesk"
+            },
+            "dcterms:license": {
+                "@id": "http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0"
+            },
+            "dcterms:accrualPeriodicity": {
+                "@id": "frequency:IRREG"
+            },
+            "dcterms:language": {
+                "@id": "language:NLD"
+            },
+            "dcterms:publisher": {
+                "@id": "ovo:OVO003323"
+            },
+            "dc:language": {
+                "@language": "nl",
+                "@value": "nl"
+            },
+            "foaf:page": {
+                "@id": "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-test.html"
+            },
+            "dcterms:issued": {
+                "@value": "2023-02-14",
+                "@type": "xsd:date"
+            },
+            "void:rootResource": {
+                "@id": "omg_conceptscheme:test"
+            },
+            "dcterms:description": {
+                "@language": "nl",
+                "@value": "Deze dataset bevat een lijst van chemische stoffen, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid en zoals die initieel binnen het kader van het OSLO thema omgeving is opgesteld."
+            },
+            "dcterms:accessRights": {
+                "@id": "access_right:PUBLIC"
             },
             "@type": "dcat:Dataset"
         }
