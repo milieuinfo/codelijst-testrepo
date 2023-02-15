@@ -3,8 +3,9 @@ library(tidyr)
 library(dplyr)
 library(jsonlite)
 library(stringr)
+library(data.table)
 
-
+#setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 to_jsonld <- function(dataframe) {
   # lees context
   context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/context.json")
@@ -12,6 +13,26 @@ to_jsonld <- function(dataframe) {
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
   return(df_in_json)
+}
+
+collapse_df_on_pipe <- function(df) {
+  # group by
+  df <- df %>%
+    rename("id" = "@id")
+  df3 <-  df %>%
+    select(id) %>%
+    distinct()
+  for(col in colnames(df)) {   # for-loop over columns
+    if ( col != 'id') {
+      df4 <- df %>% select(id, col)
+      names(df4)[2] <- 'naam' # hack, geef de tweede kolom een vaste naam, summarize werkt niet met variabele namen
+      df2 <- df4 %>% group_by(id) %>%
+        summarize(naam = paste(sort(unique(naam)),collapse="|"))
+      names(df2)[2] <- col # wijzig kolom met naam 'naam' terug naar variabele naam
+      df3 <- merge(df3, df2, by = "id")
+    }
+  }
+  return(df3)
 }
 
 expand_df_on_pipe <- function(dataframe) {
@@ -89,13 +110,18 @@ df <- expand_df_on_pipe(df)%>%
 
 # write volledig geexpandeerde csv, ter controle, deze wordt niet aan versiebeheer toegevoegd
 write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test_separate_rows.csv", row.names = FALSE)
+write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test_separate_rows_collapsed.csv", row.names = FALSE)
 
 # bewaar jsonld
-write(to_jsonld(df), "/tmp/test.jsonld")
+tmp_file <- tempfile(fileext = ".jsonld")
+
+write(to_jsonld(df), tmp_file)
+
+### CLEAN RDF
 
 # serialiseer jsonld naar mooie turtle en mooie jsonld
 # hiervoor dienen jena cli-tools geinstalleerd, zie README.md
-system("riot --formatted=TURTLE /tmp/test.jsonld > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl")
+system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl"))
 system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.jsonld")
 #system("shacl v --shapes ../resources/be/vlaanderen/omgeving/data/id/ontology/chemische-stof-ap-constraints/chemische-stof-ap-constraints.ttl --data ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl")
 

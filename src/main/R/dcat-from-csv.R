@@ -54,11 +54,10 @@ collapse_df_on_pipe <- function(df) {
   for(col in colnames(df)) {   # for-loop over columns
     if ( col != 'id') {
       df4 <- df %>% select(id, col)   
-      names(df4)[2] <- 'naam'
+      names(df4)[2] <- 'naam' # hack, geef de tweede kolom een vaste naam, summarize werkt niet met variabele namen
       df2 <- df4 %>% group_by(id) %>% 
         summarize(naam = paste(sort(unique(naam)),collapse="|")) 
-      names(df2)[2] <- col
-      #colnames(df2)[2] = col
+      names(df2)[2] <- col # wijzig kolom met naam 'naam' terug naar variabele naam
       df3 <- merge(df3, df2, by = "id")
     }
   }
@@ -162,11 +161,13 @@ df <-   expand_df_on_pipe(df)%>%
 ### JSONLD RDF UIT DATAFRAME
 df_in_json <- to_jsonld(df)
 
-write(df_in_json, "/tmp/catalog.jsonld")
+tmp_file <- tempfile(fileext = ".jsonld")
+
+write(df_in_json, tmp_file)
 
 ### CLEAN RDF
 
-system("riot --formatted=TURTLE /tmp/catalog.jsonld > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl")
+system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl"))
 system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.ttl > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-test/catalog.jsonld")
 
 

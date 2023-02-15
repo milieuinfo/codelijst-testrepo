@@ -1,32 +1,32 @@
-@prefix colt:              <https://data.omgeving.vlaanderen.be/id/collection/test/> .
-@prefix cs:                <https://data.omgeving.vlaanderen.be/id/conceptscheme/> .
-@prefix ct:                <https://data.omgeving.vlaanderen.be/id/concept/test/> .
-@prefix dc:                <http://purl.org/dc/elements/1.1/> .
-@prefix dct:               <http://purl.org/dc/terms/> .
+@prefix cs:    <https://data.omgeving.vlaanderen.be/id/conceptscheme/> .
+@prefix ct:    <https://data.omgeving.vlaanderen.be/id/concept/test/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix omg_conceptscheme: <https://data.omgeving.vlaanderen.be/id/conceptscheme/> .
-@prefix rdf:               <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
-@prefix xkos:              <http://rdf-vocabulary.ddialliance.org/xkos#> .
-@prefix xsd:               <http://www.w3.org/2001/XMLSchema#> .
+@prefix colt:  <https://data.omgeving.vlaanderen.be/id/collection/test/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix xkos:  <http://rdf-vocabulary.ddialliance.org/xkos#> .
 
 ct:test_collectie  skos:member  ct:test_concept , ct:test_topconcept .
 
 omg_conceptscheme:test
-        rdf:type            skos:ConceptScheme ;
+        a                   skos:ConceptScheme ;
         skos:hasTopConcept  ct:test_topconcept ;
         skos:prefLabel      "PrefLabel_4"@nl .
 
-ct:test_topconcept  rdf:type  skos:Concept ;
+ct:test_topconcept  a      skos:Concept ;
         skos:inScheme      omg_conceptscheme:test ;
         skos:narrower      ct:test_concept ;
         skos:prefLabel     "PrefLabel_1"@nl ;
         skos:topConceptOf  omg_conceptscheme:test .
 
-colt:test_collectie  rdf:type  skos:Collection ;
+colt:test_collectie  a  skos:Collection ;
         skos:inScheme   omg_conceptscheme:test ;
         skos:prefLabel  "PrefLabel_3"@nl .
 
-ct:test_concept  rdf:type  skos:Concept ;
+ct:test_concept  a      skos:Concept ;
         skos:broader    ct:test_topconcept ;
         skos:inScheme   omg_conceptscheme:test ;
         skos:prefLabel  "PrefLabel_2"@nl .
