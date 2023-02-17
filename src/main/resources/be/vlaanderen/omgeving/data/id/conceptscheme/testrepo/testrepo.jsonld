@@ -1,0 +1,80 @@
+{
+    "@graph": [
+        {
+            "@id": "ct:test_collectie",
+            "skos:member": [
+                {
+                    "@id": "ct:test_topconcept"
+                },
+                {
+                    "@id": "ct:test_concept"
+                }
+            ]
+        },
+        {
+            "@id": "ct:test_topconcept",
+            "skos:topConceptOf": {
+                "@id": "cs:test"
+            },
+            "skos:prefLabel": {
+                "@language": "nl",
+                "@value": "PrefLabel_1"
+            },
+            "skos:narrower": {
+                "@id": "ct:test_concept"
+            },
+            "skos:inScheme": {
+                "@id": "cs:test"
+            },
+            "@type": "skos:Concept"
+        },
+        {
+            "@id": "ct:test_concept",
+            "skos:prefLabel": {
+                "@language": "nl",
+                "@value": "PrefLabel_2"
+            },
+            "skos:inScheme": {
+                "@id": "cs:test"
+            },
+            "skos:broader": {
+                "@id": "ct:test_topconcept"
+            },
+            "@type": "skos:Concept"
+        },
+        {
+            "@id": "cs:test",
+            "skos:prefLabel": {
+                "@language": "nl",
+                "@value": "PrefLabel_4"
+            },
+            "skos:hasTopConcept": {
+                "@id": "ct:test_topconcept"
+            },
+            "@type": "skos:ConceptScheme"
+        },
+        {
+            "@id": "colt:test_collectie",
+            "skos:prefLabel": {
+                "@language": "nl",
+                "@value": "PrefLabel_3"
+            },
+            "skos:inScheme": {
+                "@id": "cs:test"
+            },
+            "@type": "skos:Collection"
+        }
+    ],
+    "@context": {
+        "cs": "https://data.omgeving.vlaanderen.be/id/conceptscheme/",
+        "ct": "https://data.omgeving.vlaanderen.be/id/concept/test/",
+        "dct": "http://purl.org/dc/terms/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "colt": "https://data.omgeving.vlaanderen.be/id/collection/test/",
+        "omg_conceptscheme": "https://data.omgeving.vlaanderen.be/id/conceptscheme/",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "xkos": "http://rdf-vocabulary.ddialliance.org/xkos#"
+    }
+}

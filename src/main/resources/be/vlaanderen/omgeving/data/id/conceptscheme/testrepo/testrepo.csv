@@ -1,0 +1,6 @@
+"id","@type","collection","prefLabel","altLabel","broader","broaderTransitive","broadMatch","changeNote","closeMatch","definition","editorialNote","exactMatch","example","hiddenLabel","historyNote","inScheme","mappingRelation","notation","note","related","relatedMatch","scopeNote","semanticRelation","topConceptOf","member","hasTopConcept","narrower"
+"colt:test_collectie","skos:Collection","","PrefLabel_3","","","","","","","","","","","","","cs:test","","","","","","","","","","",""
+"cs:test","skos:ConceptScheme","","PrefLabel_4","","","","","","","","","","","","","","","","","","","","","","","ct:test_topconcept",""
+"ct:test_collectie","","","","","","","","","","","","","","","","","","","","","","","","","ct:test_concept|ct:test_topconcept","",""
+"ct:test_concept","skos:Concept","ct:test_collectie","PrefLabel_2","","ct:test_topconcept","","","","","","","","","","","cs:test","","","","","","","","","","",""
+"ct:test_topconcept","skos:Concept","ct:test_collectie","PrefLabel_1","","","","","","","","","","","","","cs:test","","","","","","","","cs:test","","","ct:test_concept"

@@ -7,8 +7,8 @@ import os
 #g = Graph()
 #g.parse("/tmp/test.jsonld")
 
-context = json.load(open("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/context.json"))
-df = pd.read_csv("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.csv", sep=",", na_values=["", "NA"])
+context = json.load(open("../resources/source/test_context.json"))
+df = pd.read_csv("../resources/source/test_source.csv", sep=",", na_values=["", "NA"])
 df = expand_df_on_pipe(df)
 df = members_from_collection(df)
 df = hasTopConcept_from_topConceptOf(df)

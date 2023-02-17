@@ -8,7 +8,7 @@ library(data.table)
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 to_jsonld <- function(dataframe) {
   # lees context
-  context <- jsonlite::read_json("../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/context.json")
+  context <- jsonlite::read_json("../resources/source/test_context.json")
   # jsonld constructie
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
@@ -99,7 +99,7 @@ narrower_from_broader  <- function(df) {
 }
 
 # lees csv
-df <- read.csv(file = "../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.csv", sep=",", na.strings=c("","NA"))
+df <- read.csv(file = "../resources/source/test_source.csv", sep=",", na.strings=c("","NA"))
 
 df <- expand_df_on_pipe(df)%>%
   members_from_collection()%>%
@@ -107,10 +107,10 @@ df <- expand_df_on_pipe(df)%>%
   narrower_from_broader()%>%
   rename_columns()
 
+write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv", row.names = FALSE)
 
 # write volledig geexpandeerde csv, ter controle, deze wordt niet aan versiebeheer toegevoegd
-write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test_separate_rows.csv", row.names = FALSE)
-write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test_separate_rows_collapsed.csv", row.names = FALSE)
+write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/test_separate_rows.csv", row.names = FALSE)
 
 # bewaar jsonld
 tmp_file <- tempfile(fileext = ".jsonld")
@@ -121,9 +121,9 @@ write(to_jsonld(df), tmp_file)
 
 # serialiseer jsonld naar mooie turtle en mooie jsonld
 # hiervoor dienen jena cli-tools geinstalleerd, zie README.md
-system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl"))
-system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.jsonld")
-#system("shacl v --shapes ../resources/be/vlaanderen/omgeving/data/id/ontology/chemische-stof-ap-constraints/chemische-stof-ap-constraints.ttl --data ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/test/test.ttl")
+system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl"))
+system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.jsonld")
+#system("shacl v --shapes ../resources/be/vlaanderen/omgeving/data/id/ontology/chemische-stof-ap-constraints/chemische-stof-ap-constraints.ttl --data ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl")
 
 
 
