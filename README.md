@@ -2,7 +2,9 @@
 
 ## Samenvatting
 
-Dit project bevat een codelijst met eenduidige benamingen van ... en tools om deze lijst te beheren en om te zetten naar webformaten. 
+De codelijst 'testrepo' bevat eenduidige benamingen van ...
+In dit project worden de bron bestanden en de verschillende verspreidingsvormen van de codelijst beheerd.
+Het project bevat ook tools om deze lijst te beheren en om te zetten naar webformaten. 
 
 ## Gebruik
 
