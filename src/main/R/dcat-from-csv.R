@@ -7,6 +7,7 @@ library(data.table)
 library(stringr)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
+#setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
 
 
 ##### FUNCTIES
@@ -64,22 +65,36 @@ collapse_df_on_pipe <- function(df) {
   return(df3)
 }
 
+update_id_with_version <- function(id, version_next_release) {
+  subst <- paste("\\1",".",version_next_release, sep = "")
+  new_id <- gsub("(codelijst-[^.]+)", subst, id, perl=TRUE)
+  return(new_id)
+}
 
+update_uri_with_version <- function(uri, version_next_release) {
+  subst <- paste("\\1",".",version_next_release, sep = "")
+  new_uri <- gsub("(codelijst-[^.]+)", subst, uri, perl=TRUE)
+  return(new_uri)
+}
 
 
 update_version <- function(df) {
-  df2 <- data.frame(id=subset(df, type == 'dcat:Dataset')$id, hasVersion=paste(subset(df, type == 'dcat:Dataset')$id,version_next_release, sep = "."), type='dcat:Dataset')
+  #df2 <- data.frame(id=subset(df, type == 'dcat:Dataset')$id, hasVersion=paste(subset(df, type == 'dcat:Dataset')$id,version_next_release, sep = "."), type='dcat:Dataset')
+  df2 <- data.frame(id=subset(df, type == 'dcat:Dataset')$id, hasVersion=update_uri_with_version(subset(df, type == 'dcat:Dataset')$id, version_next_release), type='dcat:Dataset')
   setDT(df)[type == "dcat:Dataset", owl.versionInfo := version_next_release]
   setDT(df)[type == "dcat:Distribution", owl.versionInfo := version_next_release]
   setDT(df)[type == "spdx:Package", owl.versionInfo := version_next_release]
-  setDT(df)[type == "dcat:Dataset", id := paste(id,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Distribution", id := paste(id,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Dataset", dc.identifier := paste(dc.identifier,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Distribution", dc.identifier := paste(dc.identifier,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Dataset", identifier := paste(identifier,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Distribution", identifier := paste(identifier,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Dataset", distribution := paste(distribution,version_next_release, sep = ".")]
-  setDT(df)[type == "dcat:Distribution", downloadURL := gsub("/src", paste('-',version_next_release,'/src', sep = ""), downloadURL)]
+  setDT(df)[type == "dcat:Dataset", label := paste(label," (",version_next_release,")", sep = "")]
+  setDT(df)[type == "dcat:Dataset", id := update_uri_with_version(id, version_next_release)]
+  setDT(df)[type == "dcat:Distribution", id := update_uri_with_version(id, version_next_release)]
+  setDT(df)[type == "dcat:Dataset", dc.identifier := update_id_with_version(dc.identifier, version_next_release)]
+  setDT(df)[type == "dcat:Distribution", dc.identifier := update_id_with_version(dc.identifier, version_next_release)]
+  setDT(df)[type == "dcat:Dataset", identifier := update_uri_with_version(identifier, version_next_release)]
+  setDT(df)[type == "dcat:Distribution", identifier := update_uri_with_version(identifier, version_next_release)]
+  setDT(df)[type == "dcat:Dataset", distribution := update_uri_with_version(distribution, version_next_release)]
+  setDT(df)[type == "dcat:Distribution", downloadURL := update_id_with_version(downloadURL, version_next_release)]
+  setDT(df)[type == "dcat:Dataset", page := update_uri_with_version(page, version_next_release)]
+  setDT(df)[type == "dcat:Distribution", page := update_uri_with_version(page, version_next_release)]
   setDT(df)[type == "dcat:Distribution", issued := issued_]
   setDT(df)[type == "dcat:Dataset", issued := issued_]
   setDT(df)[type == "spdx:Package", issued := issued_]

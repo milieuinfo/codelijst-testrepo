@@ -19,7 +19,7 @@
     "accrualPeriodicity" : "frequency:IRREG",
     "alternative" : {
       "@language" : "nl",
-      "@value" : "Codelijst testrepo Dataset"
+      "@value" : "Dataset codelijst testrepo"
     },
     "description" : {
       "@language" : "nl",
@@ -28,7 +28,7 @@
     "dcterms:identifier" : {
       "@id" : "omg_dataset:codelijst-testrepo.2.1.1"
     },
-    "issued" : "2023-03-06",
+    "issued" : "2023-03-07",
     "dcterms:language" : {
       "@id" : "language:NLD"
     },
@@ -39,23 +39,23 @@
     "temporal" : "omg_periodoftime:dataset_omg",
     "title" : {
       "@language" : "nl",
-      "@value" : "Thesaurus testconcepten"
+      "@value" : "Codelijst testrepo"
     },
     "rootResource" : "omg_conceptscheme:testrepo",
     "label" : {
       "@language" : "nl",
-      "@value" : "Dataset Codelijst testrepo"
+      "@value" : "Codelijst testrepo (2.1.1)"
     },
     "versionInfo" : "2.1.1",
     "contactPoint" : "omg_vcard:helpdesk",
-    "distribution" : [ "omg_distribution:codelijst-testrepo_csv.2.1.1", "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1", "omg_distribution:codelijst-testrepo_jsonld.2.1.1", "omg_distribution:codelijst-testrepo_ttl.2.1.1" ],
+    "distribution" : [ "omg_distribution:codelijst-testrepo.2.1.1.testrepo.ttl", "omg_distribution:codelijst-testrepo.2.1.1.testrepo.csv", "omg_distribution:codelijst-testrepo.2.1.1.testrepo.jsonld", "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1" ],
     "landingPage" : "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html",
-    "theme" : [ "datatheme_eu:ENVI", "datatheme_be:ENVI", "gemet:10087", "eurovoc:2407" ],
-    "page" : "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.html"
+    "theme" : [ "eurovoc:2407", "datatheme_eu:ENVI", "datatheme_be:ENVI", "gemet:10087" ],
+    "page" : "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.2.1.1.html"
   }, {
-    "@id" : "omg_distribution:codelijst-testrepo_csv.2.1.1",
+    "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.csv",
     "@type" : "dcat:Distribution",
-    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_csv.2.1.1",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.csv",
     "accessRights" : "access_right:PUBLIC",
     "description" : {
       "@language" : "nl",
@@ -63,9 +63,9 @@
     },
     "format" : "file_type:CSV",
     "dcterms:identifier" : {
-      "@id" : "omg_distribution:codelijst-testrepo_csv.2.1.1"
+      "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.csv"
     },
-    "issued" : "2023-03-06",
+    "issued" : "2023-03-07",
     "rightsHolder" : "ovo:OVO003751",
     "title" : {
       "@language" : "nl",
@@ -78,13 +78,13 @@
     "versionInfo" : "2.1.1",
     "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
     "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
-    "downloadURL" : "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.csv",
     "mediaType" : "https://www.iana.org/assignments/media-types/text/csv",
-    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_csv.html"
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.1.1.testrepo.csv.html"
   }, {
-    "@id" : "omg_distribution:codelijst-testrepo_jsonld.2.1.1",
+    "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.jsonld",
     "@type" : "dcat:Distribution",
-    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_jsonld.2.1.1",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.jsonld",
     "accessRights" : "access_right:PUBLIC",
     "description" : {
       "@language" : "nl",
@@ -92,9 +92,9 @@
     },
     "format" : "file_type:JSON_LD",
     "dcterms:identifier" : {
-      "@id" : "omg_distribution:codelijst-testrepo_jsonld.2.1.1"
+      "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.jsonld"
     },
-    "issued" : "2023-03-06",
+    "issued" : "2023-03-07",
     "rightsHolder" : "ovo:OVO003751",
     "title" : {
       "@language" : "nl",
@@ -107,13 +107,13 @@
     "versionInfo" : "2.1.1",
     "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
     "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
-    "downloadURL" : "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.jsonld",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.jsonld",
     "mediaType" : "https://www.iana.org/assignments/media-types/application/ld+json",
-    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_jsonld.html"
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.1.1.testrepo.jsonld.html"
   }, {
-    "@id" : "omg_distribution:codelijst-testrepo_ttl.2.1.1",
+    "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.ttl",
     "@type" : "dcat:Distribution",
-    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_ttl.2.1.1",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.ttl",
     "accessRights" : "access_right:PUBLIC",
     "description" : {
       "@language" : "nl",
@@ -121,9 +121,9 @@
     },
     "format" : "file_type:RDF_TURTLE",
     "dcterms:identifier" : {
-      "@id" : "omg_distribution:codelijst-testrepo_ttl.2.1.1"
+      "@id" : "omg_distribution:codelijst-testrepo.2.1.1.testrepo.ttl"
     },
-    "issued" : "2023-03-06",
+    "issued" : "2023-03-07",
     "rightsHolder" : "ovo:OVO003751",
     "title" : {
       "@language" : "nl",
@@ -136,9 +136,9 @@
     "versionInfo" : "2.1.1",
     "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
     "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
-    "downloadURL" : "https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.1.1.testrepo.ttl",
     "mediaType" : "https://www.iana.org/assignments/media-types/text/turtle",
-    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_ttl.html"
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.1.1.testrepo.ttl.html"
   }, {
     "@id" : "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1",
     "@type" : [ "spdx:Package", "dcat:Distribution" ],
@@ -152,7 +152,7 @@
     "dcterms:identifier" : {
       "@id" : "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1"
     },
-    "issued" : "2023-03-06",
+    "issued" : "2023-03-07",
     "rightsHolder" : "ovo:OVO003751",
     "title" : {
       "@language" : "nl",
@@ -177,10 +177,6 @@
     "identifier" : {
       "@id" : "http://purl.org/dc/elements/1.1/identifier"
     },
-    "issued" : {
-      "@id" : "http://purl.org/dc/terms/issued",
-      "@type" : "http://www.w3.org/2001/XMLSchema#date"
-    },
     "accessRights" : {
       "@id" : "http://purl.org/dc/terms/accessRights",
       "@type" : "@id"
@@ -202,6 +198,10 @@
       "@id" : "http://purl.org/dc/terms/rightsHolder",
       "@type" : "@id"
     },
+    "issued" : {
+      "@id" : "http://purl.org/dc/terms/issued",
+      "@type" : "http://www.w3.org/2001/XMLSchema#date"
+    },
     "description" : {
       "@id" : "http://purl.org/dc/terms/description"
     },
@@ -215,10 +215,6 @@
       "@id" : "http://purl.org/dc/terms/format",
       "@type" : "@id"
     },
-    "hasVersion" : {
-      "@id" : "http://purl.org/dc/terms/hasVersion",
-      "@type" : "@id"
-    },
     "page" : {
       "@id" : "http://xmlns.com/foaf/0.1/page",
       "@type" : "@id"
@@ -227,16 +223,24 @@
       "@id" : "http://www.w3.org/ns/dcat#compressFormat",
       "@type" : "@id"
     },
-    "mediaType" : {
-      "@id" : "http://www.w3.org/ns/dcat#mediaType",
-      "@type" : "@id"
-    },
     "accessURL" : {
       "@id" : "http://www.w3.org/ns/dcat#accessURL",
       "@type" : "@id"
     },
+    "mediaType" : {
+      "@id" : "http://www.w3.org/ns/dcat#mediaType",
+      "@type" : "@id"
+    },
+    "hasVersion" : {
+      "@id" : "http://purl.org/dc/terms/hasVersion",
+      "@type" : "@id"
+    },
     "dataset" : {
       "@id" : "http://www.w3.org/ns/dcat#dataset",
+      "@type" : "@id"
+    },
+    "theme" : {
+      "@id" : "http://www.w3.org/ns/dcat#theme",
       "@type" : "@id"
     },
     "distribution" : {
@@ -252,10 +256,6 @@
       "@type" : "@id"
     },
     "language" : "http://publications.europa.eu/resource/authority/language/",
-    "theme" : {
-      "@id" : "http://www.w3.org/ns/dcat#theme",
-      "@type" : "@id"
-    },
     "temporal" : {
       "@id" : "http://purl.org/dc/terms/temporal",
       "@type" : "@id"
