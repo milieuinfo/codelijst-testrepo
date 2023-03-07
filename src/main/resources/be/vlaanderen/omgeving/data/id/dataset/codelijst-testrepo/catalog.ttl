@@ -41,108 +41,108 @@
 @prefix void:                <http://rdfs.org/ns/void#> .
 @prefix xsd:                 <http://www.w3.org/2001/XMLSchema#> .
 
-omg_distribution:codelijst-testrepo_ttl.2.1.0
-        rdf:type              dcat:Distribution ;
-        rdfs:label            "Codelijst testrepo, in Turtle rdf-formaat."@nl ;
-        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_ttl.2.1.0" ;
-        dcterms:accessRights  access_right:PUBLIC ;
-        dcterms:description   "Codelijst testrepo, geserialiseerd in Turtle bestand."@nl ;
-        dcterms:format        file_type:RDF_TURTLE ;
-        dcterms:identifier    omg_distribution:codelijst-testrepo_ttl.2.1.0 ;
-        dcterms:issued        "2023-02-17"^^xsd:date ;
-        dcterms:rightsHolder  ovo:OVO003751 ;
-        dcterms:title         "Codelijst testrepo in Turtle rdf-formaat."@nl ;
-        owl:versionInfo       "2.1.0" ;
-        dcat:accessURL        <https://github.com/milieuinfo/codelijst-testrepo.git> ;
-        dcat:compressFormat   <http://www.iana.org/assignments/media-types/application/gzip> ;
-        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.0/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl> ;
-        dcat:mediaType        <https://www.iana.org/assignments/media-types/text/turtle> ;
-        foaf:page             <https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_ttl.html> .
-
-omg_distribution:codelijst-testrepo_csv.2.1.0
-        rdf:type              dcat:Distribution ;
-        rdfs:label            "Codelijst testrepo, in text/csv formaat."@nl ;
-        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_csv.2.1.0" ;
-        dcterms:accessRights  access_right:PUBLIC ;
-        dcterms:description   "Codelijst testrepo, geserialiseerd in csv tabelformaat."@nl ;
-        dcterms:format        file_type:CSV ;
-        dcterms:identifier    omg_distribution:codelijst-testrepo_csv.2.1.0 ;
-        dcterms:issued        "2023-02-17"^^xsd:date ;
-        dcterms:rightsHolder  ovo:OVO003751 ;
-        dcterms:title         "Codelijst testrepo in text/csv formaat."@nl ;
-        owl:versionInfo       "2.1.0" ;
-        dcat:accessURL        <https://github.com/milieuinfo/codelijst-testrepo.git> ;
-        dcat:compressFormat   <http://www.iana.org/assignments/media-types/application/gzip> ;
-        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.0/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv> ;
-        dcat:mediaType        <https://www.iana.org/assignments/media-types/text/csv> ;
-        foaf:page             <https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_csv.html> .
-
-omg_dataset:codelijst-testrepo.2.1.0
-        rdf:type                    dcat:Dataset ;
-        rdfs:label                  "Dataset Codelijst testrepo"@nl ;
-        dc:identifier               "be.vlaanderen.omgeving.data.id.dataset.codelijst-testrepo.2.1.0" ;
-        dc:language                 "nl"@nl ;
-        dcterms:accessRights        access_right:PUBLIC ;
-        dcterms:accrualPeriodicity  frequency:IRREG ;
-        dcterms:alternative         "Codelijst testrepo Dataset"@nl ;
-        dcterms:description         "Deze dataset bevat een lijst van testconcepten, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid."@nl ;
-        dcterms:identifier          omg_dataset:codelijst-testrepo.2.1.0 ;
-        dcterms:issued              "2023-02-17"^^xsd:date ;
-        dcterms:language            language:NLD ;
-        dcterms:license             <http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0> ;
-        dcterms:publisher           ovo:OVO003323 ;
-        dcterms:rightsHolder        ovo:OVO003751 ;
-        dcterms:spatial             country:BEL , <https://www.geonames.org/3337388/flanders> ;
-        dcterms:temporal            omg_periodoftime:dataset_omg ;
-        dcterms:title               "Thesaurus testconcepten"@nl ;
-        void:rootResource           omg_conceptscheme:testrepo ;
-        owl:versionInfo             "2.1.0" ;
-        dcat:contactPoint           omg_vcard:helpdesk ;
-        dcat:distribution           omg_distribution:codelijst-testrepo_csv.2.1.0 , omg_distribution:codelijst-testrepo_jsonld.2.1.0 , omg_distribution:codelijst-testrepo_ttl.2.1.0 , omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.0 ;
-        dcat:landingPage            <https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html> ;
-        dcat:theme                  datatheme_eu:ENVI , datatheme_be:ENVI , eurovoc:2407 , gemet:10087 ;
-        foaf:page                   <https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.html> .
+omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1
+        rdf:type               dcat:Distribution , spdx:Package ;
+        rdfs:label             "Package codelijst-testrepo"@nl ;
+        dc:identifier          "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1" ;
+        dcterms:accessRights   access_right:PUBLIC ;
+        dcterms:description    "Codelijst testrepo, Jar maven package."@nl ;
+        dcterms:format         file_type:JAR ;
+        dcterms:identifier     omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1 ;
+        dcterms:issued         "2023-03-06"^^xsd:date ;
+        dcterms:rightsHolder   ovo:OVO003751 ;
+        dcterms:title          "Codelijst testrepo in jar-formaat."@nl ;
+        spdx:downloadLocation  <https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.1.1/codelijst-testrepo-2.1.1.jar> ;
+        spdx:packageFileName   "codelijst-testrepo-2.1.1.jar" ;
+        spdx:packageName       "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo" ;
+        spdx:versionInfo       "2.1.1" ;
+        owl:versionInfo        "2.1.1" ;
+        dcat:downloadURL       <https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.1.1/codelijst-testrepo-2.1.1.jar> .
 
 omg_dataset:codelijst-testrepo
         rdf:type            dcat:Dataset ;
-        dcterms:hasVersion  omg_dataset:codelijst-testrepo.2.1.0 .
+        dcterms:hasVersion  omg_dataset:codelijst-testrepo.2.1.1 .
+
+omg_distribution:codelijst-testrepo_ttl.2.1.1
+        rdf:type              dcat:Distribution ;
+        rdfs:label            "Codelijst testrepo, in Turtle rdf-formaat."@nl ;
+        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_ttl.2.1.1" ;
+        dcterms:accessRights  access_right:PUBLIC ;
+        dcterms:description   "Codelijst testrepo, geserialiseerd in Turtle bestand."@nl ;
+        dcterms:format        file_type:RDF_TURTLE ;
+        dcterms:identifier    omg_distribution:codelijst-testrepo_ttl.2.1.1 ;
+        dcterms:issued        "2023-03-06"^^xsd:date ;
+        dcterms:rightsHolder  ovo:OVO003751 ;
+        dcterms:title         "Codelijst testrepo in Turtle rdf-formaat."@nl ;
+        owl:versionInfo       "2.1.1" ;
+        dcat:accessURL        <https://github.com/milieuinfo/codelijst-testrepo.git> ;
+        dcat:compressFormat   <http://www.iana.org/assignments/media-types/application/gzip> ;
+        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl> ;
+        dcat:mediaType        <https://www.iana.org/assignments/media-types/text/turtle> ;
+        foaf:page             <https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_ttl.html> .
+
+omg_distribution:codelijst-testrepo_csv.2.1.1
+        rdf:type              dcat:Distribution ;
+        rdfs:label            "Codelijst testrepo, in text/csv formaat."@nl ;
+        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_csv.2.1.1" ;
+        dcterms:accessRights  access_right:PUBLIC ;
+        dcterms:description   "Codelijst testrepo, geserialiseerd in csv tabelformaat."@nl ;
+        dcterms:format        file_type:CSV ;
+        dcterms:identifier    omg_distribution:codelijst-testrepo_csv.2.1.1 ;
+        dcterms:issued        "2023-03-06"^^xsd:date ;
+        dcterms:rightsHolder  ovo:OVO003751 ;
+        dcterms:title         "Codelijst testrepo in text/csv formaat."@nl ;
+        owl:versionInfo       "2.1.1" ;
+        dcat:accessURL        <https://github.com/milieuinfo/codelijst-testrepo.git> ;
+        dcat:compressFormat   <http://www.iana.org/assignments/media-types/application/gzip> ;
+        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv> ;
+        dcat:mediaType        <https://www.iana.org/assignments/media-types/text/csv> ;
+        foaf:page             <https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_csv.html> .
 
 omg_catalog:codelijst
         rdf:type      dcat:Catalog ;
         dcat:dataset  omg_dataset:codelijst-testrepo .
 
-omg_distribution:codelijst-testrepo_jsonld.2.1.0
+omg_dataset:codelijst-testrepo.2.1.1
+        rdf:type                    dcat:Dataset ;
+        rdfs:label                  "Dataset Codelijst testrepo"@nl ;
+        dc:identifier               "be.vlaanderen.omgeving.data.id.dataset.codelijst-testrepo.2.1.1" ;
+        dc:language                 "nl"@nl ;
+        dcterms:accessRights        access_right:PUBLIC ;
+        dcterms:accrualPeriodicity  frequency:IRREG ;
+        dcterms:alternative         "Codelijst testrepo Dataset"@nl ;
+        dcterms:description         "Deze dataset bevat een lijst van testconcepten, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid."@nl ;
+        dcterms:identifier          omg_dataset:codelijst-testrepo.2.1.1 ;
+        dcterms:issued              "2023-03-06"^^xsd:date ;
+        dcterms:language            language:NLD ;
+        dcterms:license             <http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0> ;
+        dcterms:publisher           ovo:OVO003323 ;
+        dcterms:rightsHolder        ovo:OVO003751 ;
+        dcterms:spatial             <https://www.geonames.org/3337388/flanders> , country:BEL ;
+        dcterms:temporal            omg_periodoftime:dataset_omg ;
+        dcterms:title               "Thesaurus testconcepten"@nl ;
+        void:rootResource           omg_conceptscheme:testrepo ;
+        owl:versionInfo             "2.1.1" ;
+        dcat:contactPoint           omg_vcard:helpdesk ;
+        dcat:distribution           omg_distribution:codelijst-testrepo_csv.2.1.1 , omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.1 , omg_distribution:codelijst-testrepo_jsonld.2.1.1 , omg_distribution:codelijst-testrepo_ttl.2.1.1 ;
+        dcat:landingPage            <https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html> ;
+        dcat:theme                  datatheme_eu:ENVI , datatheme_be:ENVI , gemet:10087 , eurovoc:2407 ;
+        foaf:page                   <https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.html> .
+
+omg_distribution:codelijst-testrepo_jsonld.2.1.1
         rdf:type              dcat:Distribution ;
         rdfs:label            "Codelijst testrepo, in jsonld rdf-formaat."@nl ;
-        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_jsonld.2.1.0" ;
+        dc:identifier         "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo_jsonld.2.1.1" ;
         dcterms:accessRights  access_right:PUBLIC ;
         dcterms:description   "Codelijst testrepo, geserialiseerd in een jsonld bestand."@nl ;
         dcterms:format        file_type:JSON_LD ;
-        dcterms:identifier    omg_distribution:codelijst-testrepo_jsonld.2.1.0 ;
-        dcterms:issued        "2023-02-17"^^xsd:date ;
+        dcterms:identifier    omg_distribution:codelijst-testrepo_jsonld.2.1.1 ;
+        dcterms:issued        "2023-03-06"^^xsd:date ;
         dcterms:rightsHolder  ovo:OVO003751 ;
         dcterms:title         "Codelijst testrepo in jsonld rdf-formaat."@nl ;
-        owl:versionInfo       "2.1.0" ;
+        owl:versionInfo       "2.1.1" ;
         dcat:accessURL        <https://github.com/milieuinfo/codelijst-testrepo.git> ;
         dcat:compressFormat   <http://www.iana.org/assignments/media-types/application/gzip> ;
-        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.0/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.jsonld> ;
+        dcat:downloadURL      <https://raw.githubusercontent.com/milieuinfo/codelijst-testrepo/codelijst-testrepo-2.1.1/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.jsonld> ;
         dcat:mediaType        <https://www.iana.org/assignments/media-types/application/ld+json> ;
         foaf:page             <https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo_jsonld.html> .
-
-omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.0
-        rdf:type               spdx:Package , dcat:Distribution ;
-        rdfs:label             "Package codelijst-testrepo"@nl ;
-        dc:identifier          "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.0" ;
-        dcterms:accessRights   access_right:PUBLIC ;
-        dcterms:description    "Codelijst testrepo, Jar maven package."@nl ;
-        dcterms:format         file_type:JAR ;
-        dcterms:identifier     omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.1.0 ;
-        dcterms:issued         "2023-02-17"^^xsd:date ;
-        dcterms:rightsHolder   ovo:OVO003751 ;
-        dcterms:title          "Codelijst testrepo in jar-formaat."@nl ;
-        spdx:downloadLocation  <https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.1.0/codelijst-testrepo-2.1.0.jar> ;
-        spdx:packageFileName   "codelijst-testrepo-2.1.0.jar" ;
-        spdx:packageName       "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo" ;
-        spdx:versionInfo       "2.1.0" ;
-        owl:versionInfo        "2.1.0" ;
-        dcat:downloadURL       <https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.1.0/codelijst-testrepo-2.1.0.jar> .
