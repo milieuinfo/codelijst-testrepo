@@ -1,12 +1,12 @@
-# codelijst-chemische_stof
+# codelijst-testrepo
 
 ## Samenvatting
 
-Dit project bevat een codelijst met eenduidige benamingen van chemische stoffen en tools om deze lijst te beheren en om te zetten naar webformaten. 
+Dit project bevat een codelijst met eenduidige benamingen van ... en tools om deze lijst te beheren en om te zetten naar webformaten. 
 
 ## Gebruik
 
-- Voeg een definitie van een nieuwe chemische stof toe aan $PROJECT_HOME/src/main/resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/chemische_stof.csv
+- Voeg een definitie van een nieuwe code toe aan $PROJECT_HOME/src/main/resources/source/testrepo_source.csv
 
 ### csv naar rdf
 ```
