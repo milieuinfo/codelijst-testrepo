@@ -11,22 +11,28 @@
 
 ct:test_collectie  skos:member  ct:test_concept , ct:test_topconcept .
 
-omg_conceptscheme:test
+omg_conceptscheme:testrepo
         rdf:type            skos:ConceptScheme ;
+        dc:identifier       "testrepo" ;
         skos:hasTopConcept  ct:test_topconcept ;
-        skos:prefLabel      "PrefLabel_4"@nl .
+        skos:prefLabel      "PrefLabel van testrepo"@nl .
 
 ct:test_topconcept  rdf:type  skos:Concept ;
-        skos:inScheme      omg_conceptscheme:test ;
+        dc:identifier      "test_topconcept" ;
+        skos:inScheme      omg_conceptscheme:testrepo ;
         skos:narrower      ct:test_concept ;
-        skos:prefLabel     "PrefLabel_1"@nl ;
-        skos:topConceptOf  omg_conceptscheme:test .
+        skos:notation      "code (mnemonic) van test_topconcept" ;
+        skos:prefLabel     "PrefLabel van test_topconcept"@nl ;
+        skos:topConceptOf  omg_conceptscheme:testrepo .
 
 colt:test_collectie  rdf:type  skos:Collection ;
-        skos:inScheme   omg_conceptscheme:test ;
-        skos:prefLabel  "PrefLabel_3"@nl .
+        dc:identifier   "test_collectie" ;
+        skos:inScheme   omg_conceptscheme:testrepo ;
+        skos:prefLabel  "PrefLabel van test_collectie"@nl .
 
 ct:test_concept  rdf:type  skos:Concept ;
+        dc:identifier   "test_concept" ;
         skos:broader    ct:test_topconcept ;
-        skos:inScheme   omg_conceptscheme:test ;
-        skos:prefLabel  "PrefLabel_2"@nl .
+        skos:inScheme   omg_conceptscheme:testrepo ;
+        skos:notation   "code (mnemonic) van test_concept" ;
+        skos:prefLabel  "PrefLabel van test_concept"@nl .

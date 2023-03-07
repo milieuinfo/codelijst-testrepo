@@ -2,10 +2,11 @@
   "@graph" : [ {
     "@id" : "colt:test_collectie",
     "@type" : "skos:Collection",
-    "inScheme" : "cs:test",
+    "identifier" : "test_collectie",
+    "inScheme" : "cs:testrepo",
     "prefLabel" : {
       "@language" : "nl",
-      "@value" : "PrefLabel_3"
+      "@value" : "PrefLabel van test_collectie"
     }
   }, {
     "@id" : "ct:test_collectie",
@@ -13,29 +14,34 @@
   }, {
     "@id" : "ct:test_concept",
     "@type" : "skos:Concept",
+    "identifier" : "test_concept",
     "broader" : "ct:test_topconcept",
-    "inScheme" : "cs:test",
+    "inScheme" : "cs:testrepo",
+    "notation" : "code (mnemonic) van test_concept",
     "prefLabel" : {
       "@language" : "nl",
-      "@value" : "PrefLabel_2"
+      "@value" : "PrefLabel van test_concept"
     }
   }, {
     "@id" : "ct:test_topconcept",
     "@type" : "skos:Concept",
-    "inScheme" : "cs:test",
+    "identifier" : "test_topconcept",
+    "inScheme" : "cs:testrepo",
     "narrower" : "ct:test_concept",
+    "notation" : "code (mnemonic) van test_topconcept",
     "prefLabel" : {
       "@language" : "nl",
-      "@value" : "PrefLabel_1"
+      "@value" : "PrefLabel van test_topconcept"
     },
-    "topConceptOf" : "cs:test"
+    "topConceptOf" : "cs:testrepo"
   }, {
-    "@id" : "cs:test",
+    "@id" : "cs:testrepo",
     "@type" : "skos:ConceptScheme",
+    "identifier" : "testrepo",
     "hasTopConcept" : "ct:test_topconcept",
     "prefLabel" : {
       "@language" : "nl",
-      "@value" : "PrefLabel_4"
+      "@value" : "PrefLabel van testrepo"
     }
   } ],
   "@context" : {
@@ -50,9 +56,15 @@
       "@id" : "http://www.w3.org/2004/02/skos/core#hasTopConcept",
       "@type" : "@id"
     },
+    "identifier" : {
+      "@id" : "http://purl.org/dc/elements/1.1/identifier"
+    },
     "topConceptOf" : {
       "@id" : "http://www.w3.org/2004/02/skos/core#topConceptOf",
       "@type" : "@id"
+    },
+    "notation" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#notation"
     },
     "narrower" : {
       "@id" : "http://www.w3.org/2004/02/skos/core#narrower",
