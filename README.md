@@ -8,17 +8,12 @@ Het project bevat ook tools om deze lijst te beheren en om te zetten naar webfor
 
 ## Gebruik
 
-- Voeg een definitie van een nieuwe code toe aan $PROJECT_HOME/src/main/resources/source/testrepo_source.csv
+- Voeg een definitie van een nieuwe code toe aan $PROJECT_HOME/src/main/resources/source/codelijst_source.csv
 
 ### csv naar rdf
 ```
 cd $PROJECT_HOME/src/main/bash
-bash csv_to_rfd.sh
-```
-### rdf naar csv
-```
-cd $PROJECT_HOME/src/main/sparql
-sparql --results=CSV --data=../resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/chemische_stof.ttl  --query rdf_to_csv.rq > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/chemische_stof/chemische_stof.csv
+bash 01_csv_to_rfd.sh
 ```
 
 ## Dependencies

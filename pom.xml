@@ -28,6 +28,20 @@
         <version>3.2.0</version>
         <executions>
           <execution>
+            <id>1</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>codelijst</classifier>
+              <includes>
+                <include>**/id/conceptscheme/*</include>
+              </includes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>2</id>
             <phase>package</phase>
             <goals>
               <goal>jar</goal>
@@ -35,7 +49,7 @@
             <configuration>
               <classifier>metadata</classifier>
               <includes>
-                <include>**/dataset/*</include>
+                <include>**/id/dataset/*</include>
               </includes>
             </configuration>
           </execution>
