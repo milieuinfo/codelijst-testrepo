@@ -10,7 +10,7 @@
   <packaging>jar</packaging>
   <groupId>be.vlaanderen.omgeving.data.id.graph</groupId>
   <artifactId>codelijst-testrepo</artifactId>
-  <version>2.1.0-SNAPSHOT</version>
+  <version>2.1.1-SNAPSHOT</version>
   <name>codelijst-testrepo</name>
   <description />
 
@@ -22,6 +22,39 @@
   </scm>
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>1</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>codelijst</classifier>
+              <includes>
+                <include>**/id/conceptscheme/*</include>
+              </includes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>2</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>metadata</classifier>
+              <includes>
+                <include>**/id/dataset/*</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -52,11 +85,7 @@
       <resource>
         <directory>src/main/resources</directory>
         <filtering>false</filtering>
-        <excludes>
-          <exclude>**/*csv</exclude>
-        </excludes>
       </resource>
-
     </resources>
   </build>
 </project>

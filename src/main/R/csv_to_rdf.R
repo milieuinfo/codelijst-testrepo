@@ -6,9 +6,10 @@ library(stringr)
 library(data.table)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
+#setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
 to_jsonld <- function(dataframe) {
   # lees context
-  context <- jsonlite::read_json("../resources/source/test_context.json")
+  context <- jsonlite::read_json("../resources/source/codelijst_context.json")
   # jsonld constructie
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
@@ -99,7 +100,7 @@ narrower_from_broader  <- function(df) {
 }
 
 # lees csv
-df <- read.csv(file = "../resources/source/test_source.csv", sep=",", na.strings=c("","NA"))
+df <- read.csv(file = "../resources/source/codelijst_source.csv", sep=",", na.strings=c("","NA"))
 
 df <- expand_df_on_pipe(df)%>%
   members_from_collection()%>%
@@ -110,7 +111,7 @@ df <- expand_df_on_pipe(df)%>%
 write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv", row.names = FALSE)
 
 # write volledig geexpandeerde csv, ter controle, deze wordt niet aan versiebeheer toegevoegd
-write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/test_separate_rows.csv", row.names = FALSE)
+write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/temp_test_separate_rows.csv", row.names = FALSE)
 
 # bewaar jsonld
 tmp_file <- tempfile(fileext = ".jsonld")
