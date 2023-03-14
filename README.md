@@ -2,13 +2,23 @@
 
 ## Samenvatting
 
-De codelijst 'testrepo' bevat eenduidige benamingen van ...
-In dit project worden de bron bestanden en de verschillende verspreidingsvormen van de codelijst beheerd.
-Het project bevat ook tools om deze lijst te beheren en om te zetten naar webformaten. 
+De codelijst 'testrepo' is een template om een nieuw codelijst project op te zetten. \
 
 ## Gebruik
 
+```
+cd /tmp
+git clone https://github.com/milieuinfo/codelijst-testrepo.git
+cd codelijst-testrepo
+jupyter-notebook
+```
+- open create_new_codelist_project.ipynb in de notebook
+- vervang 'whatever' door de naam van je codelijst (geen spaties etc.)
+- run de notebook
+- het nieuwe project is aangemaakt onder /tmp/codelijst-...
 - Voeg een definitie van een nieuwe code toe aan $PROJECT_HOME/src/main/resources/source/codelijst_source.csv
+- maak project aan in github
+- push naar github
 
 ### csv naar rdf
 ```
