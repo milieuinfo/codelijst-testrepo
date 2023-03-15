@@ -88,7 +88,11 @@
             "@type": "skos:Collection"
         },
         {
-            "@id": "ct:test_collectie",
+            "@id": "colt:test_collectie",
+            "skos:prefLabel": {
+                "@language": "nl",
+                "@value": "PrefLabel van test_collectie"
+            },
             "skos:member": [
                 {
                     "@id": "ct:test_topconcept"
@@ -99,14 +103,7 @@
                 {
                     "@id": "ct:test_concept"
                 }
-            ]
-        },
-        {
-            "@id": "colt:test_collectie",
-            "skos:prefLabel": {
-                "@language": "nl",
-                "@value": "PrefLabel van test_collectie"
-            },
+            ],
             "skos:inScheme": {
                 "@id": "cs:testrepo"
             },

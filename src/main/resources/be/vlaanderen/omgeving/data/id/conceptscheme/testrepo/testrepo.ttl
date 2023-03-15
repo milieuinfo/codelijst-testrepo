@@ -36,11 +36,10 @@ colt:test_collectie2  rdf:type  skos:Collection ;
         skos:member     ct:test_concept2 ;
         skos:prefLabel  "PrefLabel van test_collectie"@nl .
 
-ct:test_collectie  skos:member  ct:test_concept , ct:test_concept2 , ct:test_topconcept .
-
 colt:test_collectie  rdf:type  skos:Collection ;
         dc:identifier   "test_collectie" ;
         skos:inScheme   omg_conceptscheme:testrepo ;
+        skos:member     ct:test_concept , ct:test_concept2 , ct:test_topconcept ;
         skos:prefLabel  "PrefLabel van test_collectie"@nl .
 
 ct:test_concept2  rdf:type  skos:Concept ;
