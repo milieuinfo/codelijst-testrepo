@@ -1,7 +1,7 @@
 type,uri,dc.id,collection,notation,prefLabel,blabla,broader,broaderTransitive,broadMatch,changeNote,closeMatch,definition,editorialNote,exactMatch,example,hiddenLabel,historyNote,inScheme,mappingRelation,note,related,relatedMatch,scopeNote,semanticRelation,topConceptOf
-skos:Concept,ct:test_topconcept,test_topconcept,ct:test_collectie,code (mnemonic) van test_topconcept,PrefLabel van test_topconcept,,,,,,,,,,,,,cs:testrepo,,,,,,,cs:testrepo
-skos:Concept,ct:test_concept2,test_concept2,ct:test_collectie|colt:test_collectie2,code (mnemonic) van test_concept 2,PrefLabel van test_concept 2,blablabla,ct:test_topconcept,,,,,,,,,,,cs:testrepo,,,,,,,
-skos:Concept,ct:test_concept,test_concept,ct:test_collectie,code (mnemonic) van test_concept,PrefLabel van test_concept,,ct:test_topconcept,,,,,,,,,,,cs:testrepo,,,,,,,
+skos:Concept,ct:test_topconcept,test_topconcept,colt:test_collectie,code (mnemonic) van test_topconcept,PrefLabel van test_topconcept,,,,,,,,,,,,,cs:testrepo,,,,,,,cs:testrepo
+skos:Concept,ct:test_concept2,test_concept2,colt:test_collectie|colt:test_collectie2,code (mnemonic) van test_concept 2,PrefLabel van test_concept 2,blablabla,ct:test_topconcept,,,,,,,,,,,cs:testrepo,,,,,,,
+skos:Concept,ct:test_concept,test_concept,colt:test_collectie,code (mnemonic) van test_concept,PrefLabel van test_concept,,ct:test_topconcept,,,,,,,,,,,cs:testrepo,,,,,,,
 skos:Collection,colt:test_collectie2,test_collectie2,,,PrefLabel van test_collectie,,,,,,,,,,,,,cs:testrepo,,,,,,,
 skos:Collection,colt:test_collectie,test_collectie,,,PrefLabel van test_collectie,,,,,,,,,,,,,cs:testrepo,,,,,,,
 skos:ConceptScheme,cs:testrepo,testrepo,,,PrefLabel van testrepo,,,,,,,,,,,,,,,,,,,,
