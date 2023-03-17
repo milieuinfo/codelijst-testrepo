@@ -5,17 +5,17 @@ library(dplyr)
 library(jsonlite)
 library(data.table)
 library(stringr)
+library(yaml)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 #setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
-
 
 ##### FUNCTIES
 
 # functie om dataframe om te zetten naar jsonld
 to_jsonld <- function(dataframe) {
   # lees context
-  context <- jsonlite::read_json("../resources/source/catalog_context.json")
+  context <- jsonlite::read_json(jsonld_source_pad)
   # jsonld constructie
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
@@ -135,8 +135,17 @@ rename_columns <- function(df) {
 
 #### START SCRIPT
 
+#### PARSE CONFIG AND SET CONFIG VAR
+
+config = yaml.load_file("config.yml")
+
+dataset_distributie_pad = config$dcat$distributie_pad
+jsonld_source_pad = config$dcat$jsonld_source
+csv_source_pad = config$dcat$csv_source
+artifactory = "https://repo.omgeving.vlaanderen.be/artifactory/release"
+
 #### PARSE POM.XML SET VARIABLES
-artifactory <- "https://repo.omgeving.vlaanderen.be/artifactory/release"
+
 # read pom.xml
 x <- read_xml("../../../pom.xml")
 xml_ns_strip( x )
@@ -156,7 +165,7 @@ issued_ <- format(Sys.Date())
 
 
 ### MAAK DATAFRAME VAN METADATA CSV
-df <- read.csv(file = "../resources/source/catalog_source.csv", sep=",", na.strings=c("", "NA"))
+df <- read.csv(file = csv_source_pad, sep=",", na.strings=c("", "NA"))
 
 
 df <- expand_df_on_pipe(df)
@@ -166,7 +175,8 @@ df <-   update_version(df)
 
 #df <- add_package_as_distribution(df)
 
-write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-testrepo/catalog.csv", row.names = FALSE)
+csv_distributie <- paste(dataset_distributie_pad, "catalog.csv", sep="")
+write.csv(collapse_df_on_pipe(df), csv_distributie, row.names = FALSE)
 
 df <- df %>%
   mutate_all(list(~ str_c("", .)))
@@ -185,8 +195,14 @@ write(df_in_json, tmp_file)
 
 ### CLEAN RDF
 
-system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-testrepo/catalog.ttl"))
-system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-testrepo/catalog.ttl > ../resources/be/vlaanderen/omgeving/data/id/dataset/codelijst-testrepo/catalog.jsonld")
+ttl_distributie <- paste(dataset_distributie_pad, "catalog.ttl", sep="")
+jsonld_distributie <- paste(dataset_distributie_pad, "catalog.jsonld", sep="")
+
+riot_cmd <- paste("riot --formatted=TURTLE ", tmp_file, " > ", ttl_distributie)
+system(riot_cmd)
+
+riot_cmd <- paste("riot --formatted=JSONLD ", ttl_distributie, " > ", jsonld_distributie)
+system(riot_cmd)
 
 
 
