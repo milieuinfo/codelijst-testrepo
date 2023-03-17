@@ -140,6 +140,7 @@ rename_columns <- function(df) {
 config = yaml.load_file("config.yml")
 
 dataset_distributie_pad = config$dcat$distributie_pad
+distributie_naam = config$dcat$distributie_naam
 jsonld_source_pad = config$dcat$jsonld_source
 csv_source_pad = config$dcat$csv_source
 artifactory = "https://repo.omgeving.vlaanderen.be/artifactory/release"
@@ -175,7 +176,7 @@ df <-   update_version(df)
 
 #df <- add_package_as_distribution(df)
 
-csv_distributie <- paste(dataset_distributie_pad, "catalog.csv", sep="")
+csv_distributie <- paste(dataset_distributie_pad, distributie_naam, ".csv", sep="")
 write.csv(collapse_df_on_pipe(df), csv_distributie, row.names = FALSE)
 
 df <- df %>%
@@ -195,8 +196,8 @@ write(df_in_json, tmp_file)
 
 ### CLEAN RDF
 
-ttl_distributie <- paste(dataset_distributie_pad, "catalog.ttl", sep="")
-jsonld_distributie <- paste(dataset_distributie_pad, "catalog.jsonld", sep="")
+ttl_distributie <- paste(dataset_distributie_pad, distributie_naam, ".ttl", sep="")
+jsonld_distributie <- paste(dataset_distributie_pad, distributie_naam, ".jsonld", sep="")
 
 riot_cmd <- paste("riot --formatted=TURTLE ", tmp_file, " > ", ttl_distributie)
 system(riot_cmd)
