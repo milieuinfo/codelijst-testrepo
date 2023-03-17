@@ -4,12 +4,14 @@ library(dplyr)
 library(jsonlite)
 library(stringr)
 library(data.table)
+library(yaml)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
 #setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
+
 to_jsonld <- function(dataframe) {
   # lees context
-  context <- jsonlite::read_json("../resources/source/codelijst_context.json")
+  context <- jsonlite::read_json(jsonld_source_pad)
   # jsonld constructie
   df_in_list <- list('@graph' = dataframe, '@context' = context)
   df_in_json <- toJSON(df_in_list, auto_unbox=TRUE)
@@ -99,8 +101,19 @@ narrower_from_broader  <- function(df) {
   return(df)
 }
 
+## Start script
+
+# PARSE CONFIG AND SET CONFIG VAR
+
+config = yaml.load_file("config.yml")
+
+dataset_distributie_pad = config$skos$distributie_pad
+distributie_naam = config$skos$distributie_naam
+jsonld_source_pad = config$skos$jsonld_source
+csv_source_pad = config$skos$csv_source
+
 # lees csv
-df <- read.csv(file = "../resources/source/codelijst_source.csv", sep=",", na.strings=c("","NA"))
+df <- read.csv(file = csv_source_pad, sep=",", na.strings=c("","NA"))
 
 df <- expand_df_on_pipe(df)%>%
   members_from_collection()%>%
@@ -108,10 +121,12 @@ df <- expand_df_on_pipe(df)%>%
   narrower_from_broader()%>%
   rename_columns()
 
-write.csv(collapse_df_on_pipe(df),"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.csv", row.names = FALSE)
+csv_distributie <- paste(dataset_distributie_pad, distributie_naam, ".csv", sep="")
+write.csv(collapse_df_on_pipe(df),csv_distributie, row.names = FALSE)
 
 # write volledig geexpandeerde csv, ter controle, deze wordt niet aan versiebeheer toegevoegd
-write.csv(df,"../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/temp_test_separate_rows.csv", row.names = FALSE)
+test_distributie <- paste(dataset_distributie_pad, "temp_test_separate_rows.csv", sep="")
+write.csv(df,test_distributie, row.names = FALSE)
 
 # bewaar jsonld
 tmp_file <- tempfile(fileext = ".jsonld")
@@ -122,8 +137,14 @@ write(to_jsonld(df), tmp_file)
 
 # serialiseer jsonld naar mooie turtle en mooie jsonld
 # hiervoor dienen jena cli-tools geinstalleerd, zie README.md
-system(paste("riot --formatted=TURTLE ", tmp_file, " > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl"))
-system("riot --formatted=JSONLD ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl > ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.jsonld")
+ttl_distributie <- paste(dataset_distributie_pad, distributie_naam, ".ttl", sep="")
+jsonld_distributie <- paste(dataset_distributie_pad, distributie_naam, ".jsonld", sep="")
+
+riot_cmd <- paste("riot --formatted=TURTLE ", tmp_file, " > ", ttl_distributie)
+system(riot_cmd)
+
+riot_cmd <- paste("riot --formatted=JSONLD ", ttl_distributie, " > ", jsonld_distributie)
+system(riot_cmd)
 #system("shacl v --shapes ../resources/be/vlaanderen/omgeving/data/id/ontology/chemische-stof-ap-constraints/chemische-stof-ap-constraints.ttl --data ../resources/be/vlaanderen/omgeving/data/id/conceptscheme/testrepo/testrepo.ttl")
 
 
