@@ -1,0 +1,358 @@
+{
+  "@graph" : [ {
+    "@id" : "omg_catalog:codelijst",
+    "@type" : "dcat:Catalog",
+    "dataset" : "omg_dataset:codelijst-testrepo"
+  }, {
+    "@id" : "omg_dataset:codelijst-testrepo",
+    "@type" : "dcat:Dataset",
+    "identifier" : "be.vlaanderen.omgeving.data.id.dataset.codelijst-testrepo",
+    "dc:language" : {
+      "@language" : "nl",
+      "@value" : "nl"
+    },
+    "accessRights" : "access_right:PUBLIC",
+    "accrualPeriodicity" : "frequency:IRREG",
+    "alternative" : {
+      "@language" : "nl",
+      "@value" : "Dataset codelijst testrepo"
+    },
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Deze dataset bevat een lijst van testconcepten, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid."
+    },
+    "dcterms:identifier" : {
+      "@id" : "omg_dataset:codelijst-testrepo"
+    },
+    "dcterms:language" : {
+      "@id" : "language:NLD"
+    },
+    "license" : "http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    "publisher" : "ovo:OVO003323",
+    "rightsHolder" : "ovo:OVO003751",
+    "spatial" : [ "https://www.geonames.org/3337388/flanders", "country:BEL" ],
+    "temporal" : "omg_periodoftime:dataset_omg",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo"
+    },
+    "rootResource" : "omg_conceptscheme:testrepo",
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo"
+    },
+    "contactPoint" : "omg_vcard:helpdesk",
+    "landingPage" : "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html",
+    "theme" : [ "datatheme_eu:ENVI", "eurovoc:2407", "datatheme_be:ENVI", "gemet:10087" ],
+    "page" : "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.html"
+  }, {
+    "@id" : "omg_dataset:codelijst-testrepo.2.2.1",
+    "@type" : "dcat:Dataset",
+    "identifier" : "be.vlaanderen.omgeving.data.id.dataset.codelijst-testrepo.2.2.1",
+    "dc:language" : {
+      "@language" : "nl",
+      "@value" : "nl"
+    },
+    "accessRights" : "access_right:PUBLIC",
+    "accrualPeriodicity" : "frequency:IRREG",
+    "alternative" : {
+      "@language" : "nl",
+      "@value" : "Dataset codelijst testrepo"
+    },
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Deze dataset bevat een lijst van testconcepten, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid."
+    },
+    "dcterms:identifier" : {
+      "@id" : "omg_dataset:codelijst-testrepo.2.2.1"
+    },
+    "issued" : "2023-03-24",
+    "dcterms:language" : {
+      "@id" : "language:NLD"
+    },
+    "license" : "http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    "publisher" : "ovo:OVO003323",
+    "rightsHolder" : "ovo:OVO003751",
+    "spatial" : [ "country:BEL", "https://www.geonames.org/3337388/flanders" ],
+    "temporal" : "omg_periodoftime:dataset_omg",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo"
+    },
+    "rootResource" : "omg_conceptscheme:testrepo",
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo (2.2.1)"
+    },
+    "versionInfo" : "2.2.1",
+    "contactPoint" : "omg_vcard:helpdesk",
+    "distribution" : [ "omg_distribution:codelijst-testrepo.2.2.1.testrepo.csv", "omg_distribution:codelijst-testrepo.2.2.1.testrepo.jsonld", "omg_distribution:codelijst-testrepo.2.2.1.testrepo.ttl", "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.2.1" ],
+    "landingPage" : "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html",
+    "theme" : [ "eurovoc:2407", "datatheme_be:ENVI", "gemet:10087", "datatheme_eu:ENVI" ],
+    "page" : "https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.2.2.1.html"
+  }, {
+    "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.csv",
+    "@type" : "dcat:Distribution",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.csv",
+    "accessRights" : "access_right:PUBLIC",
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, geserialiseerd in csv tabelformaat."
+    },
+    "format" : "file_type:CSV",
+    "dcterms:identifier" : {
+      "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.csv"
+    },
+    "issued" : "2023-03-24",
+    "rightsHolder" : "ovo:OVO003751",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo in text/csv formaat."
+    },
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, in text/csv formaat."
+    },
+    "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
+    "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.csv",
+    "mediaType" : "https://www.iana.org/assignments/media-types/text/csv",
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.2.1.testrepo.csv.html"
+  }, {
+    "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.jsonld",
+    "@type" : "dcat:Distribution",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.jsonld",
+    "accessRights" : "access_right:PUBLIC",
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, geserialiseerd in een jsonld bestand."
+    },
+    "format" : "file_type:JSON_LD",
+    "dcterms:identifier" : {
+      "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.jsonld"
+    },
+    "issued" : "2023-03-24",
+    "rightsHolder" : "ovo:OVO003751",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo in jsonld rdf-formaat."
+    },
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, in jsonld rdf-formaat."
+    },
+    "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
+    "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.jsonld",
+    "mediaType" : "https://www.iana.org/assignments/media-types/application/ld+json",
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.2.1.testrepo.jsonld.html"
+  }, {
+    "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.ttl",
+    "@type" : "dcat:Distribution",
+    "identifier" : "be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.ttl",
+    "accessRights" : "access_right:PUBLIC",
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, geserialiseerd in Turtle bestand."
+    },
+    "format" : "file_type:RDF_TURTLE",
+    "dcterms:identifier" : {
+      "@id" : "omg_distribution:codelijst-testrepo.2.2.1.testrepo.ttl"
+    },
+    "issued" : "2023-03-24",
+    "rightsHolder" : "ovo:OVO003751",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo in Turtle rdf-formaat."
+    },
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, in Turtle rdf-formaat."
+    },
+    "accessURL" : "https://github.com/milieuinfo/codelijst-testrepo.git",
+    "compressFormat" : "http://www.iana.org/assignments/media-types/application/gzip",
+    "downloadURL" : "https://datasets.omgeving.vlaanderen.be/be.vlaanderen.omgeving.data.id.distribution.codelijst-testrepo.2.2.1.testrepo.ttl",
+    "mediaType" : "https://www.iana.org/assignments/media-types/text/turtle",
+    "page" : "https://data.omgeving.vlaanderen.be/doc/distribution/codelijst-testrepo.2.2.1.testrepo.ttl.html"
+  }, {
+    "@id" : "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.2.1",
+    "@type" : [ "spdx:Package", "dcat:Distribution" ],
+    "identifier" : "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.2.1",
+    "accessRights" : "access_right:PUBLIC",
+    "description" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo, Jar maven package."
+    },
+    "format" : "file_type:JAR",
+    "dcterms:identifier" : {
+      "@id" : "omg_package:be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo.2.2.1"
+    },
+    "issued" : "2023-03-24",
+    "rightsHolder" : "ovo:OVO003751",
+    "title" : {
+      "@language" : "nl",
+      "@value" : "Codelijst testrepo in jar-formaat."
+    },
+    "downloadLocation" : "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.2.1/codelijst-testrepo-2.2.1.jar",
+    "packageFileName" : "codelijst-testrepo-2.2.1.jar",
+    "packageName" : "be.vlaanderen.omgeving.data.id.graph.codelijst-testrepo",
+    "spdx:versionInfo" : "2.2.1",
+    "label" : {
+      "@language" : "nl",
+      "@value" : "Package codelijst-testrepo"
+    },
+    "downloadURL" : "https://repo.omgeving.vlaanderen.be/artifactory/release/be/vlaanderen/omgeving/data/id/graph/codelijst-testrepo/2.2.1/codelijst-testrepo-2.2.1.jar"
+  } ],
+  "@context" : {
+    "theme" : {
+      "@id" : "http://www.w3.org/ns/dcat#theme",
+      "@type" : "@id"
+    },
+    "versionInfo" : {
+      "@id" : "http://www.w3.org/2002/07/owl#versionInfo"
+    },
+    "distribution" : {
+      "@id" : "http://www.w3.org/ns/dcat#distribution",
+      "@type" : "@id"
+    },
+    "temporal" : {
+      "@id" : "http://purl.org/dc/terms/temporal",
+      "@type" : "@id"
+    },
+    "rightsHolder" : {
+      "@id" : "http://purl.org/dc/terms/rightsHolder",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "identifier" : {
+      "@id" : "http://purl.org/dc/elements/1.1/identifier"
+    },
+    "issued" : {
+      "@id" : "http://purl.org/dc/terms/issued",
+      "@type" : "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "contactPoint" : {
+      "@id" : "http://www.w3.org/ns/dcat#contactPoint",
+      "@type" : "@id"
+    },
+    "publisher" : {
+      "@id" : "http://purl.org/dc/terms/publisher",
+      "@type" : "@id"
+    },
+    "accessRights" : {
+      "@id" : "http://purl.org/dc/terms/accessRights",
+      "@type" : "@id"
+    },
+    "description" : {
+      "@id" : "http://purl.org/dc/terms/description"
+    },
+    "language" : "http://publications.europa.eu/resource/authority/language/",
+    "spatial" : {
+      "@id" : "http://purl.org/dc/terms/spatial",
+      "@type" : "@id"
+    },
+    "page" : {
+      "@id" : "http://xmlns.com/foaf/0.1/page",
+      "@type" : "@id"
+    },
+    "title" : {
+      "@id" : "http://purl.org/dc/terms/title"
+    },
+    "rootResource" : {
+      "@id" : "http://rdfs.org/ns/void#rootResource",
+      "@type" : "@id"
+    },
+    "license" : {
+      "@id" : "http://purl.org/dc/terms/license",
+      "@type" : "@id"
+    },
+    "alternative" : {
+      "@id" : "http://purl.org/dc/terms/alternative"
+    },
+    "landingPage" : {
+      "@id" : "http://www.w3.org/ns/dcat#landingPage",
+      "@type" : "@id"
+    },
+    "accrualPeriodicity" : {
+      "@id" : "http://purl.org/dc/terms/accrualPeriodicity",
+      "@type" : "@id"
+    },
+    "format" : {
+      "@id" : "http://purl.org/dc/terms/format",
+      "@type" : "@id"
+    },
+    "downloadURL" : {
+      "@id" : "http://www.w3.org/ns/dcat#downloadURL",
+      "@type" : "@id"
+    },
+    "compressFormat" : {
+      "@id" : "http://www.w3.org/ns/dcat#compressFormat",
+      "@type" : "@id"
+    },
+    "accessURL" : {
+      "@id" : "http://www.w3.org/ns/dcat#accessURL",
+      "@type" : "@id"
+    },
+    "mediaType" : {
+      "@id" : "http://www.w3.org/ns/dcat#mediaType",
+      "@type" : "@id"
+    },
+    "dataset" : {
+      "@id" : "http://www.w3.org/ns/dcat#dataset",
+      "@type" : "@id"
+    },
+    "downloadLocation" : {
+      "@id" : "http://spdx.org/rdf/terms#downloadLocation",
+      "@type" : "@id"
+    },
+    "packageName" : {
+      "@id" : "http://spdx.org/rdf/terms#packageName"
+    },
+    "packageFileName" : {
+      "@id" : "http://spdx.org/rdf/terms#packageFileName"
+    },
+    "country" : "http://publications.europa.eu/resource/authority/country/",
+    "spdx" : "http://spdx.org/rdf/terms#",
+    "omg_catalog" : "https://data.omgeving.vlaanderen.be/id/catalog/",
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "ssd" : "http://www.w3.org/ns/sparql-service-description#",
+    "omg_graphcollection" : "https://data.omgeving.vlaanderen.be/id/graphcollection/",
+    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    "omg_dataset" : "https://data.omgeving.vlaanderen.be/id/dataset/",
+    "frequency" : "http://publications.europa.eu/resource/authority/frequency/",
+    "file_type" : "http://publications.europa.eu/resource/authority/file-type/",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "foaf" : "http://xmlns.com/foaf/0.1/",
+    "omg_dataservice" : "https://data.omgeving.vlaanderen.be/id/dataservice/",
+    "void" : "http://rdfs.org/ns/void#",
+    "adms" : "http://www.w3.org/ns/adms#",
+    "vcard" : "http://www.w3.org/2006/vcard/ns#",
+    "omg_ontology" : "https://data.omgeving.vlaanderen.be/id/ontology/",
+    "omg_package" : "https://data.omgeving.vlaanderen.be/id/package/",
+    "formats" : "http://www.w3.org/ns/formats/",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "datatheme_eu" : "http://publications.europa.eu/resource/authority/data-theme/",
+    "eurovoc" : "http://eurovoc.europa.eu/",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "omg_id" : "https://data.omgeving.vlaanderen.be/id/",
+    "access_right" : "http://publications.europa.eu/resource/authority/access-right/",
+    "sd" : "http://www.w3.org/ns/sparql-service-description#",
+    "omg_collection" : "https://data.omgeving.vlaanderen.be/id/collection/",
+    "omg_periodoftime" : "https://data.omgeving.vlaanderen.be/id/periodoftime/",
+    "dcat" : "http://www.w3.org/ns/dcat#",
+    "assettype" : "http://purl.org/adms/assettype/",
+    "gemet" : "http://www.eionet.europa.eu/gemet/concept/",
+    "omg_named_graph" : "https://data.omgeving.vlaanderen.be/id/namedgraph/",
+    "omg_vcard" : "https://data.omgeving.vlaanderen.be/id/vcard/",
+    "ovo" : "http://data.vlaanderen.be/id/organisatie/",
+    "omg_graph" : "https://data.omgeving.vlaanderen.be/id/graph/",
+    "omg_distribution" : "https://data.omgeving.vlaanderen.be/id/distribution/",
+    "omg_service" : "https://data.omgeving.vlaanderen.be/id/service/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "datatheme_be" : "http://vocab.belgif.be/auth/datatheme/",
+    "omg_conceptscheme" : "https://data.omgeving.vlaanderen.be/id/conceptscheme/",
+    "dc" : "http://purl.org/dc/elements/1.1/"
+  }
+}
