@@ -9,7 +9,7 @@ library(yaml)
 library(R.utils)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
-setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
+#setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
 
 ##### FUNCTIES
 
@@ -291,7 +291,7 @@ dataset_distributie_pad = config$dcat$distributie_pad_dataset
 jsonld_source_pad = config$dcat$jsonld_source
 dataset_source_pad = config$dcat$dataset_source
 catalog_source_pad = config$dcat$catalog_source
-cat_distributie_naam = "catalog_new"
+cat_distributie_naam = "catalog"
 ds_distributie_naam = "dataset"
 
 #### TODO support operations: all (create dataset bestand, update catalog source en generate catalog bestand), update catalog source, generate_catalog
