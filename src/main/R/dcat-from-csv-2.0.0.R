@@ -9,7 +9,7 @@ library(yaml)
 library(R.utils)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
-#setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
+setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
 
 ##### FUNCTIES
 
@@ -40,10 +40,18 @@ prompt_versie <- function(version_next_release) {
   }
 }
 
-### functie om de volgende release versie juist te zetten
-prompt_valideer <- function() {
-  cat(paste("Valideer catalog source csv. Enter om verder te gaan."))
+prompt_update_catalog <- function(version_next_release) {
+  cat(paste("Update het catalog bron bestand met (nieuwe) dataset versie records (versie ",version_next_release,')?\n'))
+  cat(" (y/n)  : ")
   yes_or_no <- readLines("stdin",n=1);
+  return(yes_or_no)
+}
+
+prompt_genereer_catalog <- function() {
+  cat(paste("Genereer catalog metadata bestand(en)?\n"))
+  cat(" (y/n)  : ")
+  yes_or_no <- readLines("stdin",n=1)
+  return(yes_or_no)
 }
 
 rename_columns <- function(df) {
@@ -164,7 +172,7 @@ update_version <- function(df) {
   return(df)
 }
 
-write_rdf_distributies  <- function(df, distributie_naam) {
+write_rdf_distributies  <- function(df, distributie_pad, distributie_naam) {
   ### Prepare RDF distributie:
   df <- subset(df, select = -c(recordtype))
   # Wat doet dit?
@@ -184,8 +192,8 @@ write_rdf_distributies  <- function(df, distributie_naam) {
 
   ### CLEAN RDF
 
-  ttl_distributie <- paste(dataset_distributie_pad, distributie_naam, ".ttl", sep="")
-  jsonld_distributie <- paste(dataset_distributie_pad, distributie_naam, ".jsonld", sep="")
+  ttl_distributie <- paste(distributie_pad, distributie_naam, ".ttl", sep="")
+  jsonld_distributie <- paste(distributie_pad, distributie_naam, ".jsonld", sep="")
 
   riot_cmd <- paste("riot --formatted=TURTLE ", tmp_file, " > ", ttl_distributie)
   system(riot_cmd)
@@ -224,11 +232,11 @@ f_genereer_datasetversie <- function(dataset_template) {
   df <- collapse_df_on_pipe(df)
   df <- df %>% relocate(recordtype, .before = id)
   df <- df %>% arrange(recordtype, id)
-  
+
   csv_distributie <- paste(dataset_distributie_pad, ds_distributie_naam, ".csv", sep="")
-  write.csv(df, csv_distributie, row.names = FALSE) ## TODO what with NA values and empty Strings
+  write.csv(df, csv_distributie, row.names = FALSE, na='', fileEncoding='UTF-8')
   ## TODO hasversion
-  write_rdf_distributies(df, ds_distributie_naam)
+  write_rdf_distributies(df, dataset_distributie_pad, ds_distributie_naam)
 }
 
 ## Update het catalog source bestand met de (nieuwe) dataset versie en de eventuele dataset wijzigingen gedaan in het dataset source bestand
@@ -252,7 +260,8 @@ f_update_catalog <- function(dataset_template) {
   catalog_df <- collapse_df_on_pipe(catalog_df)
   catalog_df <- catalog_df %>% relocate(recordtype, .before = id)
   catalog_df <- catalog_df %>% arrange(recordtype, id)
-  write.csv(catalog_df, catalog_source_pad, row.names = FALSE) ## TODO what with NA values and empty Strings
+
+  write.csv(catalog_df, catalog_source_pad, row.names = FALSE, na='', fileEncoding='UTF-8')
 }
 
 f_genereer_catalog <- function() {
@@ -261,12 +270,12 @@ f_genereer_catalog <- function() {
   catalog_df <- collapse_df_on_pipe(catalog_df)
   catalog_df <- catalog_df %>% relocate(recordtype, .before = id)
   catalog_df <- catalog_df %>% arrange(recordtype, id)
-  
-  csv_distributie <- paste(dataset_distributie_pad, cat_distributie_naam, ".csv", sep="")
-  write.csv(catalog_df, csv_distributie, row.names = FALSE) ## TODO what with NA values and empty Strings
+
+  csv_distributie <- paste(catalog_distributie_pad, cat_distributie_naam, ".csv", sep="")
+  write.csv(catalog_df, csv_distributie, row.names = FALSE, na='', fileEncoding='UTF-8')
 
   ## TODO hasversion
-  write_rdf_distributies(catalog_df, cat_distributie_naam)
+  write_rdf_distributies(catalog_df, catalog_distributie_pad, cat_distributie_naam)
 }
 
 # START SCRIPT
@@ -277,14 +286,15 @@ f_genereer_catalog <- function() {
 
 config = yaml.load_file("config.yml")
 
-dataset_distributie_pad = config$dcat$distributie_pad
+catalog_distributie_pad = config$dcat$distributie_pad_catalog
+dataset_distributie_pad = config$dcat$distributie_pad_dataset
 jsonld_source_pad = config$dcat$jsonld_source
 dataset_source_pad = config$dcat$dataset_source
 catalog_source_pad = config$dcat$catalog_source
 cat_distributie_naam = "catalog_new"
-ds_distributie_naam = "dataset_new"
+ds_distributie_naam = "dataset"
 
-#### TODO support operations: all (update catalog source en generate catalog), update catalog source, generate_catalog
+#### TODO support operations: all (create dataset bestand, update catalog source en generate catalog bestand), update catalog source, generate_catalog
 operatie <- cmdArg("operatie")
 
 cat("Config params: \n")
@@ -292,7 +302,8 @@ cat("operatie=", operatie,"\n")
 cat("jsonld_source=", jsonld_source_pad,"\n")
 cat("dataset_source=", dataset_source_pad,"\n")
 cat("catalog_source=", catalog_source_pad,"\n")
-cat("distributie_pad=", dataset_distributie_pad,"\n")
+cat("distributie_pad_catalog=", catalog_distributie_pad,"\n")
+cat("distributie_pad_dataset=", dataset_distributie_pad,"\n")
 
 artifactory = "https://repo.omgeving.vlaanderen.be/artifactory/release"
 
@@ -325,22 +336,40 @@ DS_VERSIE <- str_replace(RCTYPE_DSVERSIE,"VERSIE",paste("V",version_next_release
 DSD_VERSIE <- str_replace(RCTYPE_DSDVERSIE,"VERSIE",paste("V",version_next_release,sep = ""))
 DSP_VERSIE <- str_replace(RCTYPE_DSPVERSIE,"VERSIE",paste("V",version_next_release,sep = ""))
 
+OP_GEN_DATASET <- "genereer_dataset"
+OP_UPD_CATALOG <- "opdate_catalog_source"
+OP_GEN_CATALOG <- "genereer_catalog"
+
 ## START LOGICA 
+
+if (is.null(operatie)) {
+  operatie <- "do_all"
+}
 
 ### Het dataset source bestand bevat metadata op basis waarvan catalog, dataset en concrete dataset versie gemaakt worden.
 print("Load dataset source csv bestand and process")
 dataset_template <- f_load_dataset_template()
 
-print("Genereer dataset metadata bestand(en)")
+print("Genereer dataset metadata bestanden")
 f_genereer_datasetversie(dataset_template)
 
-### Het catalog source bestand is ons admin bestand waar we de metadata bijhouden van al de versies die gepubliceerd moeten worden. Het bevat zowel de dataset metadata als metadata van de dataset versies 
-print("Update catalog source csv bestand met dataset record en (nieuwe) versie records uit dataset source bestand.")
-f_update_catalog(dataset_template)
+if (operatie != OP_GEN_CATALOG && operatie != OP_GEN_DATASET) {
+  ### Het catalog source bestand is ons admin bestand waar we de metadata bijhouden van al de versies die gepubliceerd moeten worden. Het bevat zowel de dataset metadata als metadata van de dataset versies 
+  flow <- prompt_update_catalog(version_next_release)
+  if (flow != 'n') {
+    print("update catalog source csv bestand met dataset record en (nieuwe) versie records uit dataset source bestand..")
+    f_update_catalog(dataset_template)
+  }
+}
 
-# prompt_valideer()
+if (operatie != OP_UPD_CATALOG && operatie != OP_GEN_DATASET) {
+  ### Genereer catalog metadata bestanden
+  flow <- prompt_genereer_catalog()
+  if (flow != 'n') {
+    print("genereer catalog metadata bestanden...")
+    f_genereer_catalog()
+  }
+}
 
-### Genereer catalog metadata bestanden
-print("Genereer catalog metadata bestanden")
-f_genereer_catalog()
-print("Done")
+print("End")
+
