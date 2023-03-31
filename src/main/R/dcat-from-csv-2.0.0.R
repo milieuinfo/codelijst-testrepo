@@ -9,7 +9,7 @@ library(yaml)
 library(R.utils)
 
 #setwd('/home/gehau/git/codelijst-testrepo/src/main/R')
-#setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
+setwd('/Users/pieter/work/svn/codelijst-testrepo/src/main/R')
 
 ##### FUNCTIES
 
@@ -106,8 +106,7 @@ add_package_as_distribution <- function(df) {
 
 hasVersion_from_isVersionOf  <- function(df) {
   # hasVersion relatie uit inverse relatie
-  
-  datasets <- na.omit(distinct(df['isVersionOf'])) 
+  datasets <- na.omit(distinct(df['isVersionOf']))
   for (dataset in as.list(datasets$isVersionOf)) {
     isversionof <- subset(df, isVersionOf == dataset[1] ,
                           select=c(id, isVersionOf))
@@ -181,6 +180,7 @@ write_rdf_distributies  <- function(df, distributie_pad, distributie_naam) {
     mutate_all(~na_if(., ''))
 
   df <- expand_df_on_pipe(df)%>%
+    hasVersion_from_isVersionOf()%>%
     rename_columns()
 
   ### JSONLD RDF UIT DATAFRAME

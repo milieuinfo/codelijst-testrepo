@@ -69,7 +69,8 @@ omg_dataset:codelijst-testrepo.2.2.1
         foaf:page                   <https://data.omgeving.vlaanderen.be/doc/dataset/codelijst-testrepo.2.2.1.html> .
 
 omg_dataset:codelijst-testrepo
-        rdf:type  dcat:Dataset .
+        rdf:type            dcat:Dataset ;
+        dcterms:hasVersion  omg_dataset:codelijst-testrepo.2.2.1 .
 
 omg_distribution:codelijst-testrepo.2.2.1.testrepo.ttl
         rdf:type              dcat:Distribution ;

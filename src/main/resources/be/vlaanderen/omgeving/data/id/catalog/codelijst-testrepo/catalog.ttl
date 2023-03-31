@@ -77,6 +77,7 @@ omg_dataset:codelijst-testrepo
         dcterms:accrualPeriodicity  frequency:IRREG ;
         dcterms:alternative         "Dataset codelijst testrepo"@nl ;
         dcterms:description         "Deze dataset bevat een lijst van testconcepten, die gebruikt worden binnen het beleidsdomein omgeving van de Vlaamse Overheid."@nl ;
+        dcterms:hasVersion          omg_dataset:codelijst-testrepo.2.2.1 ;
         dcterms:identifier          omg_dataset:codelijst-testrepo ;
         dcterms:language            language:NLD ;
         dcterms:license             <http://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0> ;

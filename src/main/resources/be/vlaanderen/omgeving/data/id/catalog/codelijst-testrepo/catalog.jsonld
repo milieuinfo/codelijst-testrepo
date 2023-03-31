@@ -228,6 +228,9 @@
             "dcterms:publisher": {
                 "@id": "ovo:OVO003323"
             },
+            "dcterms:hasVersion": {
+                "@id": "omg_dataset:codelijst-testrepo.2.2.1"
+            },
             "dcat:landingPage": {
                 "@id": "https://data.omgeving.vlaanderen.be/doc/catalog/codelijst.html"
             },

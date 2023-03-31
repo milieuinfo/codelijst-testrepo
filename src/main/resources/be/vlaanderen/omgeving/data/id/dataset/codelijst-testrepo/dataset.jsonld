@@ -155,6 +155,9 @@
         },
         {
             "@id": "omg_dataset:codelijst-testrepo",
+            "dcterms:hasVersion": {
+                "@id": "omg_dataset:codelijst-testrepo.2.2.1"
+            },
             "@type": "dcat:Dataset"
         },
         {
