@@ -33,6 +33,8 @@ collapse_df_on_pipe <- function(df, id_col) {
       df3 <- merge(df3, df2, by = id_col)
     }
   }
+  df3 <- df3 %>%
+        mutate_all(~na_if(., ''))
   return(df3)
 }
 
@@ -119,7 +121,7 @@ csv_source_pad = config$skos$csv_source
 df <- read.csv(file = csv_source_pad, sep=",", na.strings=c("","NA"))
 
 csv_distributie <- paste(dataset_distributie_pad, distributie_naam, ".csv", sep="")
-write.csv(collapse_df_on_pipe(df, id_column),csv_distributie, row.names = FALSE, row.names = FALSE, na='', fileEncoding='UTF-8')
+write.csv(collapse_df_on_pipe(df, id_column),csv_distributie, row.names = FALSE, na='', fileEncoding='UTF-8')
 
 df <- expand_df_on_pipe(df)%>%
   members_from_collection(id_column)%>%

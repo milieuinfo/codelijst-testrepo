@@ -50,6 +50,7 @@
               <classifier>metadata</classifier>
               <includes>
                 <include>**/id/dataset/*</include>
+                <include>**/id/catalog/*</include>
               </includes>
             </configuration>
           </execution>
